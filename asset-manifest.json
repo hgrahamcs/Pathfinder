@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/PathfinderReact/static/css/main.bd147d19.chunk.css",
-    "main.js": "/PathfinderReact/static/js/main.0160a250.chunk.js",
-    "main.js.map": "/PathfinderReact/static/js/main.0160a250.chunk.js.map",
-    "runtime-main.js": "/PathfinderReact/static/js/runtime-main.2e168d4d.js",
-    "runtime-main.js.map": "/PathfinderReact/static/js/runtime-main.2e168d4d.js.map",
-    "static/js/2.2085df82.chunk.js": "/PathfinderReact/static/js/2.2085df82.chunk.js",
-    "static/js/2.2085df82.chunk.js.map": "/PathfinderReact/static/js/2.2085df82.chunk.js.map",
-    "static/js/3.96395cc1.chunk.js": "/PathfinderReact/static/js/3.96395cc1.chunk.js",
-    "static/js/3.96395cc1.chunk.js.map": "/PathfinderReact/static/js/3.96395cc1.chunk.js.map",
-    "index.html": "/PathfinderReact/index.html",
-    "static/css/main.bd147d19.chunk.css.map": "/PathfinderReact/static/css/main.bd147d19.chunk.css.map",
-    "static/js/2.2085df82.chunk.js.LICENSE.txt": "/PathfinderReact/static/js/2.2085df82.chunk.js.LICENSE.txt"
+    "main.css": "/Pathfinder/static/css/main.bd147d19.chunk.css",
+    "main.js": "/Pathfinder/static/js/main.0160a250.chunk.js",
+    "main.js.map": "/Pathfinder/static/js/main.0160a250.chunk.js.map",
+    "runtime-main.js": "/Pathfinder/static/js/runtime-main.8dc927fc.js",
+    "runtime-main.js.map": "/Pathfinder/static/js/runtime-main.8dc927fc.js.map",
+    "static/js/2.2085df82.chunk.js": "/Pathfinder/static/js/2.2085df82.chunk.js",
+    "static/js/2.2085df82.chunk.js.map": "/Pathfinder/static/js/2.2085df82.chunk.js.map",
+    "static/js/3.96395cc1.chunk.js": "/Pathfinder/static/js/3.96395cc1.chunk.js",
+    "static/js/3.96395cc1.chunk.js.map": "/Pathfinder/static/js/3.96395cc1.chunk.js.map",
+    "index.html": "/Pathfinder/index.html",
+    "static/css/main.bd147d19.chunk.css.map": "/Pathfinder/static/css/main.bd147d19.chunk.css.map",
+    "static/js/2.2085df82.chunk.js.LICENSE.txt": "/Pathfinder/static/js/2.2085df82.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2e168d4d.js",
+    "static/js/runtime-main.8dc927fc.js",
     "static/js/2.2085df82.chunk.js",
     "static/css/main.bd147d19.chunk.css",
     "static/js/main.0160a250.chunk.js"
