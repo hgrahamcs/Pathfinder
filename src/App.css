@@ -4,10 +4,8 @@
     }
 }
 
-@media only screen and (max-device-width: 468px) {
-    body {
-        overflow-x: hidden;
-    }
+body {
+    overflow-x: hidden;
 }
 
 .top-container {
