@@ -7,7 +7,7 @@ interface IProps {
     tileWidth: number,
     tilesX: number,
     tilesY: number,
-    onTilesDragged: () => void;
+    onTilesDragged: () => void,
     topMargin: number
 }
 
