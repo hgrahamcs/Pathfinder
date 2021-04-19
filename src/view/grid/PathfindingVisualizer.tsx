@@ -303,6 +303,9 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
 }
 
 function calcLength(initial: Point, path: Tile[]) {
+    if(path.length === 0) {
+        return 0;
+    }
     let len = euclidean(initial, path[0].point);
     for (let i = 0; i < path.length - 1; i++) {
         len += euclidean(path[i].point, path[i + 1].point);
