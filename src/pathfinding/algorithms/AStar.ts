@@ -55,13 +55,13 @@ class AStarPathfinder extends Pathfinder
                 const neighborKey = stringify(neighborPoint);
                 const g = currentNode.g + this.stepCost(currentPoint, neighborPoint);
                 const f = g + this.heuristic(neighborPoint, goal);
-                if (!closedSet.has(neighborKey) || this.isNewFBetter(f, closedSet.get(neighborKey)!)) {
+                if (!closedSet.has(neighborKey) || this.isNewFBetter(g, closedSet.get(neighborKey)!)) {
                     const neighborNode = new AStarNode(
                         neighbor, g, f
                     );
                     currentNode.addChild(neighborNode);
                     openSet.push(neighborNode);
-                    closedSet.add(neighborKey, neighborNode.f());
+                    closedSet.add(neighborKey, neighborNode.g);
                 }
             }
         }
