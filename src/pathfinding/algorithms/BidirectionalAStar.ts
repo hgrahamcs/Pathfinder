@@ -9,12 +9,16 @@ import {euclidean, HeuristicFunc} from './Heuristics';
 class BiAStarPathfinder extends Pathfinder
 {
     private readonly heuristic: HeuristicFunc = (a: Point, b: Point) => euclidean(a,b);
+    private readonly isNewFBetter: (newF: number, oldF: number) => boolean;
 
-    constructor(navigator: Navigator, func?: HeuristicFunc) {
+    constructor(navigator: Navigator, func?: HeuristicFunc, canRediscover?: boolean) {
         super(navigator);
         if(func !== undefined) {
             this.heuristic = func;
         }
+        this.isNewFBetter = canRediscover === undefined || canRediscover ?
+            (newF: number, oldF: number) => newF < oldF :
+            () => false;
     }
 
     getAlgorithmName(): string {
@@ -72,7 +76,7 @@ class BiAStarPathfinder extends Pathfinder
                 const neighborKey = stringify(neighborPoint);
                 const g = startCurrentNode.g + this.stepCost(startCurrentPoint, neighborPoint);
                 const f = g + this.heuristic(neighborPoint, goal);
-                if (!startClosedSet.has(neighborKey) || f < startClosedSet.get(neighborKey)!.f()) {
+                if (!startClosedSet.has(neighborKey) || this.isNewFBetter(g, startClosedSet.get(neighborKey)!.g)) {
                     const neighborNode = new AStarNode(
                         neighbor, g, f
                     );
@@ -105,7 +109,7 @@ class BiAStarPathfinder extends Pathfinder
                 const neighborKey = stringify(neighborPoint);
                 const g = endCurrentNode.g + this.stepCost(endCurrentPoint, neighborPoint);
                 const f = g + this.heuristic(neighborPoint, initial);
-                if (!endClosedSet.has(neighborKey) || f < endClosedSet.get(neighborKey)!.f()) {
+                if (!endClosedSet.has(neighborKey) || this.isNewFBetter(g, endClosedSet.get(neighborKey)!.g)) {
                     const neighborNode = new AStarNode(
                         neighbor, g, f
                     );

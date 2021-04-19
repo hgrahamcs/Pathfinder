@@ -52,7 +52,7 @@ const CREATE_PATHFINDER: {[key: string]: ((navigator: Navigator, heuristic: Heur
         return new DFSPathfinder(navigator);
     },
     'bi-a*': (navigator, heuristic) => {
-        return new BiAStarPathfinder(navigator, heuristic);
+        return new BiAStarPathfinder(navigator, heuristic, navigator.getType() !== 'plus');
     },
     'bi-dijkstra': (navigator) => {
         return new (class BiDijkstraPathfinder extends BiAStarPathfinder {
