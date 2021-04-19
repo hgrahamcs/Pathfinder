@@ -103,11 +103,11 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 :
                 () => {}
             pathfinder.reconstructSolution((node) => {
+                nodes.push(node);
                 const promise = new Promise<NodeJS.Timeout>((resolve) => {
                     //each generation gets a higher timeout
                     const timeout = setTimeout(() => {
                         expandVisualization(node);
-                        nodes.push(node);
                         resolve(timeout);
                     }, delay);
                     this.visualTimeouts.push(timeout);
