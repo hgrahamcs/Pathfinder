@@ -102,21 +102,23 @@ class PathfindingApp extends React.Component<IProps, IState>
     doPathfinding = () => {
         this.setState({
             paused: false
-        })
+        });
         this.grid.current!.doDelayedPathfinding();
     }
 
     pausePathfinding = () => {
+        console.log('pause');
         this.setState({
             paused: true
-        })
+        });
         this.grid.current!.pausePathfinding();
     }
 
     resumePathfinding = () => {
+        console.log('resume');
         this.setState({
             paused: false
-        })
+        });
         this.grid.current!.resumePathfinding();
     }
 
@@ -152,9 +154,11 @@ class PathfindingApp extends React.Component<IProps, IState>
         const tileWidth =  isMobile() ? 47 : Math.round(window.screen.availWidth / 57);
         return (
             <div>
-                <DraggablePanel title={'Grid Settings'}
+                <DraggablePanel title='Grid Settings'
                                 show={this.state.panelShow}
                                 onClickXButton={this.hideSettings}
+                                width={350}
+                                height={420}
                 >
                     <VisualSettings disabled={this.state.arrowsDisabled}
                                     onChangeViz={this.settingsManager.changeVisualize}

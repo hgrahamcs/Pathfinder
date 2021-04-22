@@ -1,22 +1,20 @@
-class VirtualTimeout
+class VirtualTimer
 {
     private timeout: NodeJS.Timeout;
     private readonly callback: () => void
-    private readonly timeStarted: number;
-    private readonly countDown: number;
-    private timePaused: number;
+    private timeStarted: number;
+    private timeRemaining: number;
     private finished: boolean;
 
     constructor(callback: () => void, countDown: number) {
+        this.callback = callback;
+        this.finished = false;
+        this.timeStarted = Date.now();
+        this.timeRemaining = countDown;
         this.timeout = setTimeout(() => {
             callback();
             this.finished = true;
-        }, countDown);
-        this.timeStarted = Date.now();
-        this.callback = callback;
-        this.timePaused = 0;
-        this.countDown = countDown;
-        this.finished = false;
+        }, this.timeRemaining);
     }
 
     clear() {
@@ -27,16 +25,17 @@ class VirtualTimeout
     pause() {
         if(!this.finished) {
             clearTimeout(this.timeout);
-            this.timePaused = Date.now() - this.timeStarted;
+            this.timeRemaining -= Date.now() - this.timeStarted;
         }
     }
 
     resume() {
         if(!this.finished) {
+            this.timeStarted = Date.now();
             this.timeout = setTimeout(() => {
                 this.callback();
                 this.finished = true;
-            }, this.countDown - this.timePaused);
+            }, this.timeRemaining);
         }
     }
 
@@ -49,4 +48,4 @@ class VirtualTimeout
     }
 }
 
-export default VirtualTimeout;
+export default VirtualTimer;
