@@ -3,7 +3,7 @@ import '../App.css';
 import TopBar from './navbar/TopBar';
 import {VisualizeButton, SettingsButton} from './navbar/Buttons';
 import {AlgorithmDropDown, ClearDropDown, MazeDropDown} from './navbar/DropDown';
-import DraggablePanel from './elements/DraggablePanel';
+import DraggablePanel from './utility/DraggablePanel';
 import PathfindingVisualizer from './grid/PathfindingVisualizer';
 import {VisualSettings, SpeedSettings, AlgorithmSettings, HeuristicSettings} from './navbar/SettingPanels';
 import SettingsManager from './SettingsManager';
@@ -13,14 +13,16 @@ import {HORIZONTAL_SKEW, NO_SKEW, VERTICAL_SKEW} from '../pathfinding/algorithms
 interface IProps {}
 
 interface IState {
-    length: number,
-    time: number,
     heuristicDisabled: boolean,
     bidirectionalDisabled: boolean,
     arrowsDisabled: boolean,
+
     panelShow: boolean,
+
     topMargin: number,
-    vButtonColor: string
+
+    visualizing: boolean,
+    paused: boolean
 }
 
 class PathfindingApp extends React.Component<IProps, IState>
@@ -37,14 +39,13 @@ class PathfindingApp extends React.Component<IProps, IState>
     constructor(props: IProps) {
         super(props);
         this.state = {
-            length: 0,
-            time: 0,
             heuristicDisabled: false,
             bidirectionalDisabled: false,
             arrowsDisabled: false,
             panelShow: false,
             topMargin: 75,
-            vButtonColor: 'green-button'
+            visualizing: false,
+            paused: false
         }
     }
 
@@ -72,9 +73,8 @@ class PathfindingApp extends React.Component<IProps, IState>
     }
 
     changeVButtonColor = (visualizing: boolean) => {
-        const color = visualizing ? 'red-button' : 'green-button';
         this.setState({
-            vButtonColor: color
+            visualizing: visualizing
         })
     }
 
@@ -100,7 +100,24 @@ class PathfindingApp extends React.Component<IProps, IState>
     }
 
     doPathfinding = () => {
+        this.setState({
+            paused: false
+        })
         this.grid.current!.doDelayedPathfinding();
+    }
+
+    pausePathfinding = () => {
+        this.setState({
+            paused: true
+        })
+        this.grid.current!.pausePathfinding();
+    }
+
+    resumePathfinding = () => {
+        this.setState({
+            paused: false
+        })
+        this.grid.current!.resumePathfinding();
     }
 
     clearPath = () => {
@@ -123,18 +140,6 @@ class PathfindingApp extends React.Component<IProps, IState>
 
     createMazeHSkew = () => {
         this.grid.current!.createMaze(HORIZONTAL_SKEW);
-    }
-
-    setLength = (len: number) => {
-        this.setState({
-            length: len
-        });
-    }
-
-    setTime = (time: number) => {
-        this.setState({
-            time: time
-        });
     }
 
     onChangeHeight = (height: number) => {
@@ -176,8 +181,11 @@ class PathfindingApp extends React.Component<IProps, IState>
                                            onClick={this.onClickAlgDrop}
                                            onChange={this.changeAlgo}
                         />
-                        <VisualizeButton color={this.state.vButtonColor}
-                                         onClick={this.doPathfinding}
+                        <VisualizeButton active={this.state.visualizing}
+                                         paused={this.state.paused}
+                                         onPause={this.pausePathfinding}
+                                         onResume={this.resumePathfinding}
+                                         onStartStop={this.doPathfinding}
                         />
                         <ClearDropDown ref={this.clrDropDown}
                                        onClick={this.onClickClrDrop}

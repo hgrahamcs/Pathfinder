@@ -9,6 +9,7 @@ import Pathfinder from '../../pathfinding/algorithms/Pathfinder';
 import MazeGenerator from '../../pathfinding/algorithms/MazeGenerator';
 import {Point, Tile} from '../../pathfinding/core/Components';
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
+import VirtualTimeout from '../utility/VirtualTimeout';
 
 interface IProps {
     tileWidth: number,
@@ -35,7 +36,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
 
     private visualized = false;
     private visualizing = false;
-    private visualTimeouts: NodeJS.Timeout[]  = [];
+    private visualTimeouts: VirtualTimeout[]  = [];
 
     constructor(props: IProps) {
         super(props);
@@ -50,6 +51,26 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             length: -1,
             nodes: -1,
             algorithm: ''
+        }
+    }
+
+    /**
+     * Pause the delayed pathfinding algorithm being performed
+     */
+    pausePathfinding = () => {
+        for (const timeout of this.visualTimeouts) {
+            timeout.pause();
+        }
+    }
+
+    /**
+     * Resume the delayed pathfinding algorithm being performed
+     * Will reset the timeouts to the last time the timeout was paused/started
+     * if not properly called while the timeout is paused
+     */
+    resumePathfinding = () => {
+        for (const timeout of this.visualTimeouts) {
+            timeout.resume();
         }
     }
 
@@ -85,13 +106,13 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         this.visualized = false;
         const foreground = this.foreground.current!;
         foreground.toggleDisable();
-        if(!this.visualizing) {
+        if(!this.visualizing) { //start visualization if not visualizing
             this.visualizing = true;
             this.props.onChangeVisualizing(this.visualizing);
             const pathfinder = this.getPathfinder(settings);
             const path = this.findPath(pathfinder);
             const increment = settings.delayInc;
-            const promises: Promise<NodeJS.Timeout>[] = []; //to call function when timeouts finish
+            const promises: Promise<VirtualTimeout>[] = []; //to call function when timeouts finish
             this.visualTimeouts = [];
             let delay = 0;
             const visualizeAlg = settings.visualizeAlg;
@@ -100,9 +121,9 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 const expandVisualization = visualizeAlg ? this.visualizeGeneration : () => {};
                 const expandArrows = showArrows ? this.addArrowGeneration : () => {};
                 pathfinder.reconstructSolution((node) => {
-                    const promise = new Promise<NodeJS.Timeout>((resolve) => {
+                    const promise = new Promise<VirtualTimeout>((resolve) => {
                         //each generation gets a higher timeout
-                        const timeout = setTimeout(() => {
+                        const timeout = new VirtualTimeout(() => {
                             expandArrows(node);
                             expandVisualization(node);
                             this.background.current!.forceUpdate();
@@ -122,9 +143,9 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 this.visualized = true;
                 this.props.onChangeVisualizing(this.visualizing);
             });
-        } else {
-            for (let i = 0; i < this.visualTimeouts.length; i++) {
-                clearTimeout(this.visualTimeouts[i]);
+        } else { //stop visualizing if visualizing
+            for (const timeout of this.visualTimeouts) {
+                timeout.clear();
             }
             this.visualizing = false;
             this.props.onChangeVisualizing(this.visualizing);
