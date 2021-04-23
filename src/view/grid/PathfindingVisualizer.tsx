@@ -10,6 +10,7 @@ import MazeGenerator from '../../pathfinding/algorithms/MazeGenerator';
 import {Point, Tile} from '../../pathfinding/core/Components';
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
 import VirtualTimer from '../utility/VirtualTimer';
+import TerrainGeneratorBuilder from '../../pathfinding/algorithms/TerrainGeneratorBuilder';
 
 interface IProps {
     tileWidth: number,
@@ -229,17 +230,25 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     /**
-     * Create a maze on the grid foreground
+     * Create terrain on the grid foreground
      */
-    createMaze = (slant: number) => {
+    createTerrain = (mazeType: number) => {
         if(this.visualizing) {
             return;
         }
         this.clearTiles();
         this.clearPath();
         this.clearVisualization();
-        const prevGrid = this.foreground.current!.state.grid;
-        const generator = new MazeGenerator(prevGrid.getWidth(), prevGrid.getHeight(), slant);
+        const foreground = this.foreground.current!;
+        const prevGrid = foreground.state.grid;
+        const generator = new TerrainGeneratorBuilder()
+            .setDimensions(
+                prevGrid.getWidth(),
+                prevGrid.getHeight()
+            )
+            .setGeneratorType(mazeType)
+            .setIgnorePoints([foreground.state.initial, foreground.state.goal])
+            .build();
         const end = this.calcEndPointInView();
         const topLeft = {
             x: 1, y: 1
@@ -247,8 +256,8 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         const bottomRight = {
             x: end.x-2, y: end.y-2
         };
-        const grid = generator.generateMaze(topLeft, bottomRight);
-        this.foreground.current!.drawGrid(grid);
+        const grid = generator.generateTerrain(topLeft, bottomRight);
+        foreground.drawGrid(grid);
         this.setPositions({
             x: end.x-2,
             y: end.y-2

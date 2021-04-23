@@ -8,7 +8,7 @@ import PathfindingVisualizer from './grid/PathfindingVisualizer';
 import {VisualSettings, SpeedSettings, AlgorithmSettings, HeuristicSettings} from './navbar/SettingPanels';
 import SettingsManager from './SettingsManager';
 import PathfinderBuilder from '../pathfinding/algorithms/PathfinderBuilder';
-import {HORIZONTAL_SKEW, NO_SKEW, VERTICAL_SKEW} from '../pathfinding/algorithms/MazeGenerator';
+import {MAZE, MAZE_HORIZONTAL_SKEW, MAZE_VERTICAL_SKEW, RANDOM_TERRAIN} from '../pathfinding/algorithms/TerrainGeneratorBuilder';
 
 interface IProps {}
 
@@ -131,15 +131,19 @@ class PathfindingApp extends React.Component<IProps, IState>
     }
 
     createMaze = () => {
-        this.grid.current!.createMaze(NO_SKEW);
+        this.grid.current!.createTerrain(MAZE);
     }
 
     createMazeVSkew = () => {
-        this.grid.current!.createMaze(VERTICAL_SKEW);
+        this.grid.current!.createTerrain(MAZE_VERTICAL_SKEW);
     }
 
     createMazeHSkew = () => {
-        this.grid.current!.createMaze(HORIZONTAL_SKEW);
+        this.grid.current!.createTerrain(MAZE_HORIZONTAL_SKEW);
+    }
+
+    createRandomTerrain = () => {
+        this.grid.current!.createTerrain(RANDOM_TERRAIN);
     }
 
     onChangeHeight = (height: number) => {
@@ -199,6 +203,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                                       onClickMaze={this.createMaze}
                                       onClickMazeHorizontal={this.createMazeHSkew}
                                       onClickMazeVertical={this.createMazeVSkew}
+                                      onClickRandomTerrain={this.createRandomTerrain}
                         />
                         <SettingsButton onClick={this.toggleSettings}/>
                     </div>

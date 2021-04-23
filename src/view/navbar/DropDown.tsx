@@ -28,7 +28,8 @@ interface MazeProps {
     onClick: () => void,
     onClickMaze: () => void,
     onClickMazeHorizontal: () => void,
-    onClickMazeVertical: () => void
+    onClickMazeVertical: () => void,
+    onClickRandomTerrain: () => void
 }
 
 export class AlgorithmDropDown extends React.Component<AlgProps, AlgState>
@@ -170,7 +171,7 @@ export class ClearDropDown extends React.Component<ClrProps, DState>
                  onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='clr-drop-down-button drop-down-button'>
-                    <span className='clr-drop-down-text drop-down-text'>Clear Grid</span>
+                    <span className='clr-drop-down-text drop-down-text'>Reset</span>
                     <span className={'clr-arr ' + this.arrowClass()}/>
                 </div>
                 <div style={this.contentStyle()}
@@ -241,15 +242,16 @@ export class MazeDropDown extends React.Component<MazeProps, DState>
                  onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='maze-drop-down-button drop-down-button'>
-                    <span className='maze-drop-down-text drop-down-text'>Mazes</span>
+                    <span className='maze-drop-down-text drop-down-text'>Terrain</span>
                     <span className={'clr-arr ' + this.arrowClass()}/>
                 </div>
                 <div style={this.contentStyle()}
                      className={this.state.fade + ' maze-drop-down-content drop-down-content'}
                 >
                     <Clickable click={this.props.onClickMaze}>Recursive Maze Division</Clickable>
-                    <Clickable click={this.props.onClickMazeVertical}>Maze (vertical skew)</Clickable>
-                    <Clickable click={this.props.onClickMazeHorizontal}>Maze (horizontal skew)</Clickable>
+                    <Clickable click={this.props.onClickMazeHorizontal}>Horizontal Skewed Maze</Clickable>
+                    <Clickable click={this.props.onClickMazeVertical}>Vertical Skewed Maze</Clickable>
+                    <Clickable click={this.props.onClickRandomTerrain}>Random Terrain</Clickable>
                 </div>
             </div>
         );
