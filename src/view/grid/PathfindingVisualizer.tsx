@@ -286,7 +286,9 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     resetPoints = () => {
-        this.foreground.current!.resetPoints();
+        if(!this.visualizing) {
+            this.foreground.current!.resetPoints();
+        }
     }
 
     clearPath = () => {
