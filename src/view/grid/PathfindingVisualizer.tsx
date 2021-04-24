@@ -285,14 +285,8 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         }
     }
 
-    /**
-     * Sets the positions in the grid foreground
-     */
-    private setPositions = (endPoint: Point) => {
-        this.foreground.current!.moveInitial({
-            x: 1, y:1
-        });
-        this.foreground.current!.moveGoal(endPoint);
+    resetPoints = () => {
+        this.foreground.current!.resetPoints();
     }
 
     clearPath = () => {

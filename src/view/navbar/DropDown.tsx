@@ -15,7 +15,8 @@ interface AlgState {
 interface ClrProps {
     onClick: () => void,
     onClickPath: () => void,
-    onClickTiles: () => void
+    onClickTiles: () => void,
+    onClickReset: () => void;
 }
 
 interface DState {
@@ -179,6 +180,7 @@ export class ClearDropDown extends React.Component<ClrProps, DState>
                 >
                     <Clickable click={this.props.onClickPath}>Clear Path</Clickable>
                     <Clickable click={this.props.onClickTiles}>Clear Tiles</Clickable>
+                    <Clickable click={this.props.onClickReset}>Reset Grid</Clickable>
                 </div>
             </div>
         );

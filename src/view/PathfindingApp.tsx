@@ -130,6 +130,12 @@ class PathfindingApp extends React.Component<IProps, IState>
         this.grid.current!.clearTilesChecked();
     }
 
+    resetBoard = () => {
+        this.clearPath();
+        this.clearTiles();
+        this.grid.current!.resetPoints();
+    }
+
     createMaze = () => {
         this.grid.current!.createTerrain(MAZE);
     }
@@ -197,6 +203,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                                        onClick={this.onClickClrDrop}
                                        onClickTiles={this.clearTiles}
                                        onClickPath={this.clearPath}
+                                       onClickReset={this.resetBoard}
                         />
                         <MazeDropDown ref={this.mazeDropDown}
                                       onClick={this.onClickMazeDrop}
