@@ -243,10 +243,11 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         foreground.setState({
             initial: {
                 x: 1, y:1
+            },
+            goal: {
+                x: end.x-2, y: end.y-2
             }
-        }, () => foreground.setState({
-            goal: end
-        }, () => {
+        },() => {
             const prevGrid = foreground.state.grid;
             const generator = new TerrainGeneratorBuilder()
                 .setDimensions(
@@ -264,7 +265,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             };
             const grid = generator.generateTerrain(topLeft, bottomRight);
             foreground.drawGrid(grid);
-        }));
+        });
     }
 
     /**
