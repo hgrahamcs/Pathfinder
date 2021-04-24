@@ -6,7 +6,6 @@ import {Node} from '../../pathfinding/algorithms/Node';
 import PathfindingSettings from '../PathfindingSettings';
 import PathfinderBuilder from '../../pathfinding/algorithms/PathfinderBuilder';
 import Pathfinder from '../../pathfinding/algorithms/Pathfinder';
-import MazeGenerator from '../../pathfinding/algorithms/MazeGenerator';
 import {Point, Tile} from '../../pathfinding/core/Components';
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
 import VirtualTimer from '../utility/VirtualTimer';
@@ -240,28 +239,32 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         this.clearPath();
         this.clearVisualization();
         const foreground = this.foreground.current!;
-        const prevGrid = foreground.state.grid;
-        const generator = new TerrainGeneratorBuilder()
-            .setDimensions(
-                prevGrid.getWidth(),
-                prevGrid.getHeight()
-            )
-            .setGeneratorType(mazeType)
-            .setIgnorePoints([foreground.state.initial, foreground.state.goal])
-            .build();
         const end = this.calcEndPointInView();
-        const topLeft = {
-            x: 1, y: 1
-        };
-        const bottomRight = {
-            x: end.x-2, y: end.y-2
-        };
-        const grid = generator.generateTerrain(topLeft, bottomRight);
-        foreground.drawGrid(grid);
-        this.setPositions({
-            x: end.x-2,
-            y: end.y-2
-        });
+        foreground.setState({
+            initial: {
+                x: 1, y:1
+            }
+        }, () => foreground.setState({
+            goal: end
+        }, () => {
+            const prevGrid = foreground.state.grid;
+            const generator = new TerrainGeneratorBuilder()
+                .setDimensions(
+                    prevGrid.getWidth(),
+                    prevGrid.getHeight()
+                )
+                .setGeneratorType(mazeType)
+                .setIgnorePoints([foreground.state.initial, foreground.state.goal])
+                .build();
+            const topLeft = {
+                x: 1, y: 1
+            };
+            const bottomRight = {
+                x: end.x-2, y: end.y-2
+            };
+            const grid = generator.generateTerrain(topLeft, bottomRight);
+            foreground.drawGrid(grid);
+        }));
     }
 
     /**

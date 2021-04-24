@@ -12,6 +12,7 @@ abstract class TerrainGenerator
         this.width = width;
         this.height = height;
         this.ignore = new HashSet();
+        console.log(ignore);
         if(ignore !== undefined) {
             for(const i of ignore) {
                 this.ignore.add(stringify(i));

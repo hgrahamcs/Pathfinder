@@ -1,5 +1,5 @@
 import TerrainGenerator from './TerrainGenerator';
-import {createTile, Point, Tile} from '../core/Components';
+import {createTile, Point} from '../core/Components';
 import GridGraph, {Grid} from '../core/Grid';
 
 class RandomTerrainGenerator extends TerrainGenerator
