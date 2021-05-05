@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/Pathfinder/static/css/main.63567191.chunk.css",
-    "main.js": "/Pathfinder/static/js/main.f7293ebf.chunk.js",
-    "main.js.map": "/Pathfinder/static/js/main.f7293ebf.chunk.js.map",
+    "main.css": "/Pathfinder/static/css/main.94ea3b89.chunk.css",
+    "main.js": "/Pathfinder/static/js/main.4017173b.chunk.js",
+    "main.js.map": "/Pathfinder/static/js/main.4017173b.chunk.js.map",
     "runtime-main.js": "/Pathfinder/static/js/runtime-main.229786fb.js",
     "runtime-main.js.map": "/Pathfinder/static/js/runtime-main.229786fb.js.map",
     "static/js/2.b8c587a7.chunk.js": "/Pathfinder/static/js/2.b8c587a7.chunk.js",
     "static/js/2.b8c587a7.chunk.js.map": "/Pathfinder/static/js/2.b8c587a7.chunk.js.map",
     "index.html": "/Pathfinder/index.html",
-    "static/css/main.63567191.chunk.css.map": "/Pathfinder/static/css/main.63567191.chunk.css.map",
+    "static/css/main.94ea3b89.chunk.css.map": "/Pathfinder/static/css/main.94ea3b89.chunk.css.map",
     "static/js/2.b8c587a7.chunk.js.LICENSE.txt": "/Pathfinder/static/js/2.b8c587a7.chunk.js.LICENSE.txt",
     "static/media/weight.2e4bdffd.svg": "/Pathfinder/static/media/weight.2e4bdffd.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.229786fb.js",
     "static/js/2.b8c587a7.chunk.js",
-    "static/css/main.63567191.chunk.css",
-    "static/js/main.f7293ebf.chunk.js"
+    "static/css/main.94ea3b89.chunk.css",
+    "static/js/main.4017173b.chunk.js"
   ]
 }
