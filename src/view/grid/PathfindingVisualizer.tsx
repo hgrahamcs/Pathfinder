@@ -250,10 +250,10 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             }
         } : {
             initial: {
-                x: 1, y: ((end.y-1) / 2) >> 0
+                x: 1, y: end.y-2
             },
             goal: {
-                x: end.x-2, y: ((end.y-1) / 2) >> 0
+                x: end.x-2, y: 1
             }
         };
         foreground.setState(newState,() => {
