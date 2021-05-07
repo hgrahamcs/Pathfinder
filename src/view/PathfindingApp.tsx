@@ -57,49 +57,49 @@ class PathfindingApp extends React.Component<IProps, IState>
         });
     }
 
-    onClickAlgDrop = () => {
+    onClickAlgDrop() {
         this.clrDropDown.current!.hide();
         this.mazeDropDown.current!.hide();
         this.tilesDropDown.current!.hide();
     }
 
-    onClickClrDrop = () => {
+    onClickClrDrop() {
         this.algDropDown.current!.hide();
         this.mazeDropDown.current!.hide();
         this.tilesDropDown.current!.hide();
     }
 
-    onClickMazeDrop = () => {
+    onClickMazeDrop() {
         this.clrDropDown.current!.hide();
         this.algDropDown.current!.hide();
         this.tilesDropDown.current!.hide();
     }
 
-    onClickTilesDrop = () => {
+    onClickTilesDrop() {
         this.clrDropDown.current!.hide();
         this.algDropDown.current!.hide();
         this.mazeDropDown.current!.hide();
     }
 
-    changeVButtonColor = (visualizing: boolean) => {
+    changeVButtonColor(visualizing: boolean) {
         this.setState({
             visualizing: visualizing
         })
     }
 
-    toggleSettings = () => {
+    toggleSettings() {
         this.setState(prevState => ({
             panelShow: !prevState.panelShow
         }));
     }
 
-    hideSettings = () => {
+    hideSettings() {
         this.setState({
             panelShow: false
         });
     }
 
-    changeAlgo = (algorithm: string) => {
+    changeAlgo(algorithm: string) {
         this.setState({
             heuristicDisabled: !PathfinderBuilder.usesHeuristic(algorithm),
             bidirectionalDisabled: !PathfinderBuilder.hasBidirectional(algorithm),
@@ -108,67 +108,67 @@ class PathfindingApp extends React.Component<IProps, IState>
         this.settingsManager.changeAlgo(algorithm);
     }
 
-    doPathfinding = () => {
+    doPathfinding() {
         this.setState({
             paused: false
         });
         this.visualizer.current!.doDelayedPathfinding();
     }
 
-    pausePathfinding = () => {
+    pausePathfinding() {
         this.setState({
             paused: true
         });
         this.visualizer.current!.pausePathfinding();
     }
 
-    resumePathfinding = () => {
+    resumePathfinding() {
         this.setState({
             paused: false
         });
         this.visualizer.current!.resumePathfinding();
     }
 
-    clearPath = () => {
+    clearPath() {
         this.visualizer.current!.clearPath();
         this.visualizer.current!.clearVisualizationChecked();
     }
 
-    clearTiles = () => {
+    clearTiles() {
         this.clearPath();
         this.visualizer.current!.clearTilesChecked();
     }
 
-    resetBoard = () => {
+    resetBoard() {
         this.clearPath();
         this.clearTiles();
         this.visualizer.current!.resetPoints();
     }
 
-    createMaze = () => {
+    createMaze() {
         this.visualizer.current!.createTerrain(MAZE);
     }
 
-    createMazeVSkew = () => {
+    createMazeVSkew() {
         this.visualizer.current!.createTerrain(MAZE_VERTICAL_SKEW);
     }
 
-    createMazeHSkew = () => {
+    createMazeHSkew() {
         this.visualizer.current!.createTerrain(MAZE_HORIZONTAL_SKEW);
     }
 
-    createRandomTerrain = () => {
+    createRandomTerrain() {
         this.visualizer.current!.createTerrain(RANDOM_TERRAIN);
     }
 
-    changeTile = (cost: number) => {
+    changeTile(cost: number) {
         this.visualizer.current!.changeTile({
             isSolid: cost === -1,
             pathCost: cost
         });
     }
 
-    onChangeWOpacity = () => {
+    onChangeWOpacity() {
         this.visualizer.current!.setState(prevState => ({
             weightOpacity: prevState.weightOpacity === 1 ? 0.2 : 1
         }));
@@ -188,26 +188,26 @@ class PathfindingApp extends React.Component<IProps, IState>
             <div>
                 <DraggablePanel title='Grid Settings'
                                 show={this.state.panelShow}
-                                onClickXButton={this.hideSettings}
+                                onClickXButton={() => this.hideSettings()}
                                 width={350}
                                 height={425}
                 >
                     <VisualSettings disabled={this.state.arrowsDisabled}
-                                    onChangeViz={this.settingsManager.changeVisualize}
-                                    onChangeShowArrows={this.settingsManager.changeShowArrows}
-                                    onChangeWOpacity={this.onChangeWOpacity}
+                                    onChangeViz={() => this.settingsManager.changeVisualize()}
+                                    onChangeShowArrows={() => this.settingsManager.changeShowArrows()}
+                                    onChangeWOpacity={() => this.onChangeWOpacity()}
                     />
-                    <SpeedSettings onChange={this.settingsManager.changeSpeed}
+                    <SpeedSettings onChange={() => this.settingsManager.changeSpeed}
                                    initialSpeed={this.settingsManager.settings.delayInc}
                     />
                     <AlgorithmSettings disabled={this.state.bidirectionalDisabled}
-                                       onChangeBidirectional={this.settingsManager.changeBidirectional}
+                                       onChangeBidirectional={() => this.settingsManager.changeBidirectional()}
                     />
                     <HeuristicSettings disabled={this.state.heuristicDisabled}
-                                       onClickManhattan={this.settingsManager.changeManhattan}
-                                       onClickEuclidean={this.settingsManager.changeEuclidean}
-                                       onClickChebyshev={this.settingsManager.changeChebyshev}
-                                       onClickOctile={this.settingsManager.changeOctile}
+                                       onClickManhattan={() => this.settingsManager.changeManhattan()}
+                                       onClickEuclidean={() => this.settingsManager.changeEuclidean()}
+                                       onClickChebyshev={() => this.settingsManager.changeChebyshev()}
+                                       onClickOctile={() => this.settingsManager.changeOctile()}
                     />
                 </DraggablePanel>
                 <TopBar>
@@ -228,37 +228,37 @@ class PathfindingApp extends React.Component<IProps, IState>
                     </a>
                     <div className='top-container'>
                         <AlgorithmDropDown ref={this.algDropDown}
-                                           onClick={this.onClickAlgDrop}
-                                           onChange={this.changeAlgo}
+                                           onClick={() => this.onClickAlgDrop()}
+                                           onChange={(alg: string) => this.changeAlgo(alg)}
                         />
                         <VisualizeButton active={this.state.visualizing}
                                          paused={this.state.paused}
-                                         onPause={this.pausePathfinding}
-                                         onResume={this.resumePathfinding}
-                                         onStartStop={this.doPathfinding}
+                                         onPause={() => this.pausePathfinding()}
+                                         onResume={() => this.resumePathfinding()}
+                                         onStartStop={() => this.doPathfinding()}
                         />
                         <ClearDropDown ref={this.clrDropDown}
-                                       onClick={this.onClickClrDrop}
-                                       onClickTiles={this.clearTiles}
-                                       onClickPath={this.clearPath}
-                                       onClickReset={this.resetBoard}
+                                       onClick={() => this.onClickClrDrop()}
+                                       onClickTiles={() => this.clearTiles()}
+                                       onClickPath={() => this.clearPath()}
+                                       onClickReset={() => this.resetBoard()}
                         />
                         <TilesDropDown ref={this.tilesDropDown}
-                                       onClick={this.onClickTilesDrop}
-                                       onClickTileType={this.changeTile}
+                                       onClick={() => this.onClickTilesDrop()}
+                                       onClickTileType={(cost: number) => this.changeTile(cost)}
                         />
                         <MazeDropDown ref={this.mazeDropDown}
-                                      onClick={this.onClickMazeDrop}
-                                      onClickMaze={this.createMaze}
-                                      onClickMazeHorizontal={this.createMazeHSkew}
-                                      onClickMazeVertical={this.createMazeVSkew}
-                                      onClickRandomTerrain={this.createRandomTerrain}
+                                      onClick={() => this.onClickMazeDrop()}
+                                      onClickMaze={() => this.createMaze()}
+                                      onClickMazeHorizontal={() => this.createMazeHSkew()}
+                                      onClickMazeVertical={() => this.createMazeVSkew()}
+                                      onClickRandomTerrain={() => this.createRandomTerrain()}
                         />
-                        <SettingsButton onClick={this.toggleSettings}/>
+                        <SettingsButton onClick={() => this.toggleSettings()}/>
                     </div>
                 </TopBar>
                 <PathfindingVisualizer ref={this.visualizer}
-                                       onChangeVisualizing={this.changeVButtonColor}
+                                       onChangeVisualizing={(viz: boolean) => this.changeVButtonColor(viz)}
                                        settings={this.settingsManager.settings}
                                        tileWidth={tileWidth}/>
             </div>

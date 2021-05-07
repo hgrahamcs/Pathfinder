@@ -34,7 +34,7 @@ class RadioButtonGroup extends React.Component<IProps, IState>
      * Trigger callback
      * @param index
      */
-    private onChange = (index: number) => {
+    onChange (index: number) {
         const checked: boolean[] = [];
         for(let i = 0; i < this.props.onChange.length; i++) {
             checked.push(i === index);

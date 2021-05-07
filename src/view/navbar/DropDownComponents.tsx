@@ -52,14 +52,14 @@ export class AlgorithmDropDown extends DropDown<AlgProps, DropDownTextState>
         };
     }
 
-    onChange = (key: string, algText: string) => {
+    onChange(key: string, algText: string) {
         this.props.onChange(key);
         this.setState({
             text: algText
         });
     }
 
-    arrowClass = () => {
+    arrowClass() {
         return this.state.up ? 'arrowUp' : 'arrowDown';
     }
 
@@ -99,7 +99,7 @@ export class ClearDropDown extends DropDown<ClrProps, DropDownState>
         };
     }
 
-    arrowClass = () => {
+    arrowClass() {
         return this.state.up ? 'arrowUpW' : 'arrowDownW';
     }
 
@@ -137,7 +137,7 @@ export class MazeDropDown extends DropDown<MazeProps, DropDownState>
         };
     }
 
-    arrowClass = () => {
+    arrowClass() {
         return this.state.up ? 'arrowUpW' : 'arrowDownW';
     }
 
@@ -177,11 +177,11 @@ export class TilesDropDown extends DropDown<TileProps, DropDownTextState>
         };
     }
 
-    arrowClass = () => {
+    arrowClass() {
         return this.state.up ? 'arrowUpW' : 'arrowDownW';
     }
 
-    onChange = (cost: number, text: string) => {
+    onChange(cost: number, text: string) {
         this.props.onClickTileType(cost);
         this.setState({
             text: text

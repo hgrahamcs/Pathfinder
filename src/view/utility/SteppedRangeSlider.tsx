@@ -28,7 +28,7 @@ class SteppedRangeSlider extends React.Component<IProps, IState>
      * Trigger callback when slider value is changed
      * @param e
      */
-    onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    onChange(e: React.FormEvent<HTMLInputElement>) {
         if(!this.mouseUp) { //to prevent firefox from resetting on release
             const val = Number(e.currentTarget.value);
             this.setState({
@@ -37,11 +37,11 @@ class SteppedRangeSlider extends React.Component<IProps, IState>
         }
     }
 
-    onMouseUp = () => {
+    onMouseUp() {
         this.mouseUp = true;
     }
 
-    onMouseDown = () => {
+    onMouseDown() {
         this.mouseUp = false;
     }
 
@@ -51,11 +51,11 @@ class SteppedRangeSlider extends React.Component<IProps, IState>
                    value={this.state.value}
                    min={this.props.min} max={this.props.max}
                    step={this.props.step} className={this.props.sliderStyle}
-                   onInput={this.onChange}
-                   onMouseUp={this.onMouseUp}
-                   onMouseDown={this.onMouseDown}
-                   onTouchEnd={this.onMouseUp}
-                   onTouchStart={this.onMouseDown}
+                   onInput={e => this.onChange(e)}
+                   onMouseUp={() => this.onMouseUp()}
+                   onMouseDown={() => this.onMouseDown()}
+                   onTouchEnd={() => this.onMouseUp()}
+                   onTouchStart={() => this.onMouseDown()}
             >
             </input>
         );

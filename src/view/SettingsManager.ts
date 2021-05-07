@@ -4,39 +4,39 @@ class SettingsManager
 {
     settings: PathfindingSettings = getDefaultSettings();
 
-    changeAlgo = (algo: string) => {
+    changeAlgo(algo: string) {
         this.settings.algorithm = algo;
     }
 
-    changeVisualize = () => {
+    changeVisualize() {
         this.settings.visualizeAlg = !this.settings.visualizeAlg;
     }
 
-    changeShowArrows = () => {
+    changeShowArrows() {
         this.settings.showArrows = !this.settings.showArrows;
     }
 
-    changeBidirectional = () => {
+    changeBidirectional() {
         this.settings.bidirectional = !this.settings.bidirectional;
     }
 
-    changeSpeed = (value: number) => {
+    changeSpeed(value: number) {
         this.settings.delayInc = value;
     }
 
-    changeManhattan = () => {
+    changeManhattan() {
         this.settings.heuristicKey = 'manhattan';
     }
 
-    changeEuclidean = () => {
+    changeEuclidean() {
         this.settings.heuristicKey = 'euclidean';
     }
 
-    changeChebyshev = () => {
+    changeChebyshev() {
         this.settings.heuristicKey = 'chebyshev';
     }
 
-    changeOctile = () => {
+    changeOctile() {
         this.settings.heuristicKey = 'octile';
     }
 }

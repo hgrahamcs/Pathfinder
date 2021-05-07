@@ -75,7 +75,7 @@ export class SpeedSettings extends React.Component<SpeedProps, SpeedState>
      * Call another callback and change text
      * @param value
      */
-    onChangeSpeed = (value: number) => {
+    onChangeSpeed(value: number) {
         const speed = SPEED_INITIAL + SPEED_STEP * value;
         this.setState({
             speedText: String(speed)
@@ -96,7 +96,7 @@ export class SpeedSettings extends React.Component<SpeedProps, SpeedState>
                     <SteppedRangeSlider min={1} max={MAX} step={1}
                                         default={(this.props.initialSpeed - SPEED_INITIAL) / SPEED_STEP}
                                         sliderStyle='slider speed-slider'
-                                        onChange={this.onChangeSpeed}
+                                        onChange={(value: number) => this.onChangeSpeed(value)}
                 />
                 <datalist id='step-list'>
                     {options}
@@ -138,13 +138,13 @@ export class HeuristicSettings extends React.Component<HeuristicProps>
         }
     }
 
-    disable = () => {
+    disable() {
         this.setState({
             disabled: true
         })
     }
 
-    enable = () => {
+    enable() {
         this.setState({
             disabled: false
         })

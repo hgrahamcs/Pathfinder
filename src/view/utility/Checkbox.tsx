@@ -27,7 +27,7 @@ class Checkbox extends React.Component<IProps,IState>
     /**
      * Trigger callback and change checkbox state
      */
-    onChange = () => {
+    onChange() {
         this.setState(prevState => ({
             checked: !prevState.checked
         }), () => this.props.onChange(this.state.checked));
@@ -37,7 +37,9 @@ class Checkbox extends React.Component<IProps,IState>
         return(
             <div>
                 <input checked={this.state.checked} type='checkbox' disabled={this.props.disabled}
-                       className={this.props.boxStyle} onKeyPress={this.onChange} onChange={this.onChange}
+                       className={this.props.boxStyle}
+                       onKeyPress={() => this.onChange()}
+                       onChange={() => this.onChange()}
                 >
                 </input>
                 {this.props.children}

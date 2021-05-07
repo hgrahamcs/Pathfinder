@@ -58,7 +58,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * Start drag and init prev mouse location when mouse is clicked on draggable
      * @param e
      */
-    private mouseDown = (e: MouseEvent) => {
+    mouseDown = (e: MouseEvent) => {
         e.preventDefault();
         this.prevY = e.clientY;
         this.prevX = e.clientX;
@@ -69,7 +69,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * Start drag and init prev touch location when finger is clicked on draggable
      * @param e
      */
-    private touchStart = (e: TouchEvent) => {
+    touchStart = (e: TouchEvent) => {
         const touch = e.touches[0] || e.changedTouches[0];
         this.prevY = touch.clientY;
         this.prevX = touch.clientX;
@@ -80,7 +80,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * Called when mouse is risen on document stop drag
      * @param e
      */
-    private mouseUp = (e: Event) => {
+    mouseUp = (e: Event) => {
         e.preventDefault();
         this.dragging = false;
     }
@@ -90,7 +90,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * the draggable canvas
      * @param e
      */
-    private mouseMove = (e: MouseEvent) => {
+    mouseMove = (e: MouseEvent) => {
         this.drag(e.clientX, e.clientY);
     }
 
@@ -99,7 +99,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * the draggable canvas
      * @param e
      */
-    private touchMove = (e: TouchEvent) => {
+    touchMove = (e: TouchEvent) => {
         const touch = e.touches[0] || e.changedTouches[0];
         this.drag(touch.clientX, touch.clientY);
     }
@@ -109,7 +109,7 @@ class DraggablePanel extends React.Component<IProps, IState>
      * @param clientX
      * @param clientY
      */
-    private drag = (clientX: number, clientY: number) => {
+    drag(clientX: number, clientY: number) {
         if(this.dragging) {
             const container = this.draggableContainer.current!;
             let top = (container.offsetTop - (this.prevY - clientY))
@@ -145,7 +145,7 @@ class DraggablePanel extends React.Component<IProps, IState>
         }
     }
 
-    getPosition = () => {
+    getPosition() {
         const left = this.state.left;
         const top = this.state.top;
         if(left === -1 || top === -1) {
@@ -157,7 +157,7 @@ class DraggablePanel extends React.Component<IProps, IState>
         };
     }
 
-    visibleStyle = () => {
+    visibleStyle()  {
         return this.props.show ? 'block' : 'none';
     }
 
@@ -189,7 +189,7 @@ class DraggablePanel extends React.Component<IProps, IState>
         );
     }
 
-    private renderDraggable = () => {
+    renderDraggable() {
         return (
             <div style={this.draggableStyle()} className='draggable'
                  ref={this.draggable}

@@ -17,21 +17,21 @@ abstract class DropDown<IProps extends DropDownProps, IState extends DropDownSta
         super(props);
     }
 
-    show = () => {
+    show() {
         this.setState({
             up: false,
             display: 'block',
         });
     }
 
-    hide = () => {
+    hide() {
         this.setState({
             display: 'none',
             up: true,
         });
     }
 
-    toggle = (e: Event) => {
+    toggle(e: Event) {
         e.stopPropagation();
         this.props.onClick();
         if(this.isHidden()) {
@@ -41,11 +41,11 @@ abstract class DropDown<IProps extends DropDownProps, IState extends DropDownSta
         }
     }
 
-    isHidden = () => {
+    isHidden() {
         return this.state.display === 'none';
     }
 
-    contentStyle = () => {
+    contentStyle() {
         return {
             display: this.state.display
         }

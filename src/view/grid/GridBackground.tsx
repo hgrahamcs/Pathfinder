@@ -63,7 +63,7 @@ class GridBackground extends React.Component<IProps,IState>
     /**
      * Clear the visualization canvas and update UI
      */
-    clear = () => {
+    clear() {
         this.setState({
             visualization: this.createEmptyBg(),
             arrows: []
@@ -75,7 +75,7 @@ class GridBackground extends React.Component<IProps,IState>
      * @param generation
      * @param visualization
      */
-    private doGeneration = (generation: Node, visualization: string[][]) => {
+    static doGeneration(generation: Node, visualization: string[][]) {
         for(const node of generation.children) {
             const point = node.tile.point;
             visualization[point.y][point.x] = OPEN_NODE;
@@ -86,12 +86,12 @@ class GridBackground extends React.Component<IProps,IState>
     }
 
     /**
-     * Visualize generation without updating UI
+     * Visualize generation and update UI
      * @param generation
      */
-    visualizeGeneration = (generation: Node) => {
+    visualizeGeneration(generation: Node) {
         this.setState(prevState => ({
-            visualization: this.doGeneration(
+            visualization: GridBackground.doGeneration(
                 generation,
                 prevState.visualization.map(
                     (arr) => arr.slice()
@@ -104,10 +104,10 @@ class GridBackground extends React.Component<IProps,IState>
      * Visualize generation array and update UI
      * @param generations
      */
-    visualizeGenerations = (generations: Node[]) => {
+    visualizeGenerations(generations: Node[]) {
         const visualization = this.createEmptyBg();
         for(const generation of generations) {
-            this.doGeneration(generation, visualization);
+            GridBackground.doGeneration(generation, visualization);
         }
         this.setState({
             visualization: visualization
@@ -119,7 +119,7 @@ class GridBackground extends React.Component<IProps,IState>
      * @param generation
      * @param arrows
      */
-    private doArrowGeneration = (generation: Node, arrows: Arrow[]) => {
+    static doArrowGeneration(generation: Node, arrows: Arrow[]) {
         const point = generation.tile.point;
         for(const node of generation.children) {
             const childPoint = node.tile.point;
@@ -146,9 +146,9 @@ class GridBackground extends React.Component<IProps,IState>
      * Add arrow generation without updating UI
      * @param generation
      */
-    addArrowGeneration = (generation: Node) => {
+    addArrowGeneration(generation: Node) {
         this.setState(prevState => ({
-            arrows: this.doArrowGeneration(
+            arrows: GridBackground.doArrowGeneration(
                 generation,
                 prevState.arrows.slice()
             )
@@ -159,14 +159,33 @@ class GridBackground extends React.Component<IProps,IState>
      * Add arrow generations and update UI
      * @param generations
      */
-    addArrowGenerations = (generations: Node[]) => {
+    addArrowGenerations(generations: Node[]) {
         const arrows: Arrow[] = [];
         for(const generation of generations) {
-            this.doArrowGeneration(generation, arrows)
+            GridBackground.doArrowGeneration(generation, arrows)
         }
         this.setState({
             arrows: arrows
         });
+    }
+
+    /**
+     * Visualize both generation and arrows and update UI
+     * @param generation
+     */
+    visualizeGenerationAndArrows(generation: Node) {
+        this.setState(prevState => ({
+            visualization: GridBackground.doGeneration(
+                generation,
+                prevState.visualization.map(
+                    (arr) => arr.slice()
+                )
+            ),
+            arrows: GridBackground.doArrowGeneration(
+                generation,
+                prevState.arrows.slice()
+            )
+        }));
     }
 
     render() {
@@ -192,7 +211,7 @@ class GridBackground extends React.Component<IProps,IState>
         );
     }
 
-    private renderArrows = () => {
+    renderArrows() {
         const width = this.props.tileWidth;
         const offset = width/2;
         const arrows: JSX.Element[] = [];
@@ -220,7 +239,7 @@ class GridBackground extends React.Component<IProps,IState>
         return arrows;
     }
 
-    private renderTiles = () => {
+    renderTiles() {
         const tiles: JSX.Element[][] = [];
         for(let y = 0; y < this.height; y++) {
             const row: JSX.Element[] = [];
@@ -237,7 +256,7 @@ class GridBackground extends React.Component<IProps,IState>
         return tiles;
     }
 
-    private renderTile = (point: Point, color: string) => {
+    renderTile(point: Point, color: string) {
         const width = this.props.tileWidth;
         const top = point.y * this.props.tileWidth;
         const left = point.x * this.props.tileWidth;
