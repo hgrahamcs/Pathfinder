@@ -20,7 +20,9 @@ interface IState {
     panelShow: boolean,
 
     visualizing: boolean,
-    paused: boolean
+    paused: boolean,
+
+    useIcon: boolean
 }
 
 class PathfindingApp extends React.Component<IProps, IState>
@@ -44,7 +46,8 @@ class PathfindingApp extends React.Component<IProps, IState>
             arrowsDisabled: false,
             panelShow: false,
             visualizing: false,
-            paused: false
+            paused: false,
+            useIcon: this.useIcon()
         }
     }
 
@@ -55,6 +58,15 @@ class PathfindingApp extends React.Component<IProps, IState>
             this.mazeDropDown.current!.hide();
             this.tilesDropDown.current!.hide();
         });
+        window.addEventListener('resize', () => {
+            this.setState({
+                useIcon: this.useIcon()
+            })
+        });
+    }
+
+    useIcon() {
+        return window.innerWidth <= 850;
     }
 
     onClickAlgDrop() {
@@ -175,7 +187,6 @@ class PathfindingApp extends React.Component<IProps, IState>
     }
 
     render() {
-        const useIcon = window.innerWidth <= 830;
         const title = 'Pathfinding Visualizer';
         const mobile = isMobile();
         const tileWidth =  mobile ? 47 : Math.round(window.screen.availWidth / 57);
@@ -213,13 +224,12 @@ class PathfindingApp extends React.Component<IProps, IState>
                 <TopBar>
                     <a href='https://github.com/JosephPrichard/PathfinderReact' className='title'
                        style={{
-                           width: useIcon ? '70px' : 'auto',
-                           height: useIcon ? '52px' : '100%'
-
+                           width: this.state.useIcon ? '70px' : 'auto',
+                           height: this.state.useIcon ? '52px' : '100%'
                        }}
                     >
                         {
-                            useIcon ?
+                            this.state.useIcon ?
                                 <img width={'100%'} height={'100%'}
                                      className='icon'
                                      alt={title} src={Icon}/> :
