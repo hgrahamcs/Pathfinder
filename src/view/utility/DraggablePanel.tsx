@@ -134,9 +134,7 @@ class DraggablePanel extends React.Component<IProps, IState>
             }
             //set new position
             this.setState({
-                top: top
-            });
-            this.setState({
+                top: top,
                 left: left
             });
             //update previous pos

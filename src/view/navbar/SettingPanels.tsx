@@ -33,9 +33,9 @@ interface HeuristicProps {
     disabled: boolean
 }
 
-const SPEED_STEP = 2;
-const SPEED_INITIAL = 4;
-const MAX = 18;
+const SPEED_STEP = 5;
+const SPEED_INITIAL = 5;
+const MAX = 19;
 
 export class VisualSettings extends React.Component<VisualProps>
 {

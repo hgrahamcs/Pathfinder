@@ -182,7 +182,7 @@ class PathfindingApp extends React.Component<IProps, IState>
         if(mobile) {
             this.settingsManager.changeSpeed(20);
         } else if(window.screen.availWidth > 2500) {
-            this.settingsManager.changeSpeed(12);
+            this.settingsManager.changeSpeed(15);
         }
         return (
             <div>
