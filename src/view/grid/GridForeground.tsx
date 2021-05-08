@@ -435,8 +435,8 @@ class GridForeground extends React.Component<IProps,IState>
                      height: this.props.tileSize,
                      position: 'absolute',
                      color: 'white',
-                     fontSize: 13,
-                     paddingTop: this.props.tileSize / 3.80,
+                     fontSize: this.props.tileSize / 2.1,
+                     paddingTop: this.props.tileSize / 3.70,
                      textAlign: 'center',
                      cursor: 'default',
                      opacity: this.props.weightOpacity + 0.4
