@@ -11,6 +11,7 @@ import {createTile, Point, Tile, TileData} from '../../pathfinding/core/Componen
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
 import VirtualTimer from '../utility/VirtualTimer';
 import TerrainGeneratorBuilder, {RANDOM_TERRAIN} from '../../pathfinding/algorithms/TerrainGeneratorBuilder';
+import {HashSet, stringify} from '../../pathfinding/structures/Hash';
 
 interface IProps {
     tileWidth: number,
@@ -160,17 +161,22 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                     expand = () => {};
                 }
                 this.generations = pathfinder.getRecentGenerations();
+                const generationSet = new HashSet(); //to keep track of rediscovered nodes
                 this.generations.forEach((generation) => {
                     const promise = new Promise<VirtualTimer>((resolve) => {
                         //each generation gets a higher timeout
                         const timeout = new VirtualTimer(() => {
-                            expand(generation)
+                            expand(generation);
                             resolve(timeout);
                         }, delay);
                         this.visualTimeouts.push(timeout);
                     });
                     promises.push(promise);
-                    delay += baseIncrement;
+                    if(!generationSet.has(stringify(generation.tile.point))) {
+                        //rediscovered nodes shouldn't add a delay to visualization
+                        delay += baseIncrement;
+                    }
+                    generationSet.add(stringify(generation.tile.point));
                 });
             }
             //call functions when timeouts finish

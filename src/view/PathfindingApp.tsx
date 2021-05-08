@@ -197,7 +197,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                                     onChangeShowArrows={() => this.settingsManager.changeShowArrows()}
                                     onChangeWOpacity={() => this.onChangeWOpacity()}
                     />
-                    <SpeedSettings onChange={() => this.settingsManager.changeSpeed}
+                    <SpeedSettings onChange={(value: number) => this.settingsManager.changeSpeed(value)}
                                    initialSpeed={this.settingsManager.settings.delayInc}
                     />
                     <AlgorithmSettings disabled={this.state.bidirectionalDisabled}
