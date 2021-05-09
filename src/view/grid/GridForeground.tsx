@@ -44,6 +44,9 @@ class GridForeground extends React.Component<IProps,IState>
     private readonly width: number;
     private readonly height: number;
 
+    private initialKey: number = 0;
+    private goalKey: number = 0;
+
     /**
      * Constructs a GridForeground with immutable height and width
      * @param props
@@ -242,6 +245,7 @@ class GridForeground extends React.Component<IProps,IState>
      */
     moveInitial(point: Point) {
         if(this.canMoveEndPoint(point)) {
+            this.initialKey++;
             this.setState({
                 initial: point
             }, () => this.props.onTilesDragged());
@@ -254,6 +258,7 @@ class GridForeground extends React.Component<IProps,IState>
      */
     moveGoal(point: Point) {
         if(this.canMoveEndPoint(point)) {
+            this.goalKey++;
             this.setState({
                 goal: point
             }, () => this.props.onTilesDragged());
@@ -266,7 +271,7 @@ class GridForeground extends React.Component<IProps,IState>
      */
     canMoveEndPoint(point: Point) {
         return this.state.grid.inBounds(point)
-            && !this.state.grid.isSolid(point)
+            && this.state.grid.isEmpty(point)
             && !pointsEqual(this.state.initial, point)
             && !pointsEqual(this.state.goal, point)
             && !this.disable;
@@ -324,8 +329,8 @@ class GridForeground extends React.Component<IProps,IState>
         return (
             <div>
                 <div className='endpoint-tiles-table'>
-                    {this.renderEndTile(this.state.initial, INITIAL_COLOR,'initial')}
-                    {this.renderEndTile(this.state.goal, GOAL_COLOR,'goal')}
+                    {this.renderEndTile(this.state.initial, INITIAL_COLOR,'initial' + this.initialKey)}
+                    {this.renderEndTile(this.state.goal, GOAL_COLOR,'goal' + this.goalKey)}
                 </div>
                 <svg ref={this.svg} xmlns='http://www.w3.org/2000/svg' className='arrow-grid'>
                     <defs>

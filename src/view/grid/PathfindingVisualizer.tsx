@@ -253,7 +253,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     /**
      * Create terrain on the grid foreground
      */
-    createTerrain(mazeType: number) {
+    createTerrain(mazeType: number, useMazeTile: boolean) {
         if(this.visualizing) {
             return;
         }
@@ -286,7 +286,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 )
                 .setGeneratorType(mazeType)
                 .setIgnorePoints([foreground.state.initial, foreground.state.goal])
-                .setTileData(this.mazeTile)
+                .setTileData(useMazeTile ? this.mazeTile : getSolid())
                 .build();
             const topLeft = {
                 x: 1, y: 1
@@ -397,6 +397,13 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 </div>
             </div>
         );
+    }
+}
+
+function getSolid() {
+    return {
+        pathCost: 1,
+        isSolid: true
     }
 }
 

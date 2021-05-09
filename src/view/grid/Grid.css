@@ -100,6 +100,23 @@
     border-style: solid;
     margin: 0;
     padding: 0;
+    animation-name: tileFgAnimation;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes tileFgAnimation {
+    0% {
+        transform: scale(.5);
+    }
+
+    100% {
+        transform: scale(1.0);
+    }
 }
 
 .svg-tile {

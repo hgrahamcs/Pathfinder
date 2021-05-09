@@ -168,19 +168,19 @@ class PathfindingApp extends React.Component<IProps, IState>
     }
 
     createMaze() {
-        this.visualizer.current!.createTerrain(MAZE);
+        this.visualizer.current!.createTerrain(MAZE, false);
     }
 
     createMazeVSkew() {
-        this.visualizer.current!.createTerrain(MAZE_VERTICAL_SKEW);
+        this.visualizer.current!.createTerrain(MAZE_VERTICAL_SKEW, false);
     }
 
     createMazeHSkew() {
-        this.visualizer.current!.createTerrain(MAZE_HORIZONTAL_SKEW);
+        this.visualizer.current!.createTerrain(MAZE_HORIZONTAL_SKEW, false);
     }
 
     createRandomTerrain() {
-        this.visualizer.current!.createTerrain(RANDOM_TERRAIN);
+        this.visualizer.current!.createTerrain(RANDOM_TERRAIN, true);
     }
 
     changeTile(cost: number) {
@@ -258,8 +258,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                                       onClickMaze={() => this.createMaze()}
                                       onClickMazeHorizontal={() => this.createMazeHSkew()}
                                       onClickMazeVertical={() => this.createMazeVSkew()}
-                                      onClickRandomTerrain={() => this.createRandomTerrain()}
-                        />
+                                      onClickRandomTerrain={() => this.createRandomTerrain()}/>
                         <SettingsButton onClick={() => this.toggleSettings()}/>
                     </div>
                 </TopBar>
