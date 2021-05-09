@@ -38,8 +38,18 @@ class PathfindingApp extends React.Component<IProps, IState>
 
     private settingsManager: SettingsManager = new SettingsManager();
 
+    private readonly tileWidth: number;
+
     constructor(props: IProps) {
         super(props);
+        const speed = this.settingsManager.settings.delayInc;
+        const mobile = isMobile();
+        this.tileWidth =  mobile ? 47 : Math.round(window.screen.availWidth / 57);
+        if(mobile) {
+            this.settingsManager.changeSpeed(speed + 20);
+        } else if(window.screen.availWidth > 2500) {
+            this.settingsManager.changeSpeed(speed + 10);
+        }
         this.state = {
             heuristicDisabled: false,
             bidirectionalDisabled: false,
@@ -180,33 +190,19 @@ class PathfindingApp extends React.Component<IProps, IState>
         });
     }
 
-    onChangeWOpacity() {
-        this.visualizer.current!.setState(prevState => ({
-            weightOpacity: prevState.weightOpacity === 1 ? 0.2 : 1
-        }));
-    }
-
     render() {
         const title = 'Pathfinding Visualizer';
-        const mobile = isMobile();
-        const tileWidth =  mobile ? 47 : Math.round(window.screen.availWidth / 57);
-        if(mobile) {
-            this.settingsManager.changeSpeed(20);
-        } else if(window.screen.availWidth > 2500) {
-            this.settingsManager.changeSpeed(15);
-        }
         return (
             <div>
                 <DraggablePanel title='Grid Settings'
                                 show={this.state.panelShow}
                                 onClickXButton={() => this.hideSettings()}
                                 width={350}
-                                height={425}
+                                height={405}
                 >
                     <VisualSettings disabled={this.state.arrowsDisabled}
                                     onChangeViz={() => this.settingsManager.changeVisualize()}
                                     onChangeShowArrows={() => this.settingsManager.changeShowArrows()}
-                                    onChangeWOpacity={() => this.onChangeWOpacity()}
                     />
                     <SpeedSettings onChange={(value: number) => this.settingsManager.changeSpeed(value)}
                                    initialSpeed={this.settingsManager.settings.delayInc}
@@ -270,7 +266,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                 <PathfindingVisualizer ref={this.visualizer}
                                        onChangeVisualizing={(viz: boolean) => this.changeVButtonColor(viz)}
                                        settings={this.settingsManager.settings}
-                                       tileWidth={tileWidth}/>
+                                       tileWidth={this.tileWidth}/>
             </div>
         );
     }

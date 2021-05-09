@@ -5,8 +5,7 @@ import Weight from '../web-content/weight.svg';
 interface WeightProps {
     tileSize: number,
     point: Point,
-    doTileAnimation: boolean,
-    weightOpacity: number
+    doTileAnimation: boolean
 }
 
 class WeightFg extends React.Component<WeightProps>
@@ -26,7 +25,6 @@ class WeightFg extends React.Component<WeightProps>
                 width: this.props.tileSize,
                 height: this.props.tileSize,
                 backgroundImage: `url(${Weight})`,
-                opacity: this.props.weightOpacity,
                 position: 'absolute'
             }}
                  className={this.doTileAnimation ? 'weight-animation' : 'weight'}

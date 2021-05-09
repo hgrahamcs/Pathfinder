@@ -12,6 +12,7 @@ import {euclidean} from '../../pathfinding/algorithms/Heuristics';
 import VirtualTimer from '../utility/VirtualTimer';
 import TerrainGeneratorBuilder, {RANDOM_TERRAIN} from '../../pathfinding/algorithms/TerrainGeneratorBuilder';
 import {HashSet, stringify} from '../../pathfinding/structures/Hash';
+import GridStaticTiles from './GridStaticTiles';
 
 interface IProps {
     tileWidth: number,
@@ -24,8 +25,7 @@ interface IState {
     length: number,
     cost: number,
     nodes: number,
-    algorithm: string,
-    weightOpacity: number
+    algorithm: string
 }
 
 class PathfindingVisualizer extends React.Component<IProps,IState>
@@ -58,8 +58,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             length: -1,
             cost: -1,
             nodes: -1,
-            algorithm: '',
-            weightOpacity: 1
+            algorithm: ''
         }
     }
 
@@ -69,8 +68,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             prevState.length !== nextState.length ||
             prevState.cost !== nextState.cost ||
             prevState.nodes !== nextState.nodes ||
-            prevState.algorithm !== nextState.algorithm ||
-            prevState.weightOpacity !== nextState.weightOpacity;
+            prevState.algorithm !== nextState.algorithm;
     }
 
     changeTile(data: TileData) {
@@ -146,10 +144,10 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             const promises: Promise<VirtualTimer>[] = []; //to call function when timeouts finish
             this.visualTimeouts = [];
             const baseIncrement = settings.delayInc;
-            let delay = 0;
             const visualizeAlg = this.canShowFrontier();
             const showArrows = this.canShowArrows();
             if(showArrows || visualizeAlg) {
+                let delay = 0;
                 let expand: (generation: Node) => void;
                 if(visualizeAlg && showArrows) {
                     expand = (generation: Node) => this.visualizeGenerationAndArrows(generation);
@@ -187,7 +185,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                 this.visualized = true;
                 this.props.onChangeVisualizing(this.visualizing);
             });
-        } else { //stop visualizing if visualizing
+        } else { //stop visualizing if currently visualizing
             for (const timeout of this.visualTimeouts) {
                 timeout.clear();
             }
@@ -220,7 +218,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         const t0 = performance.now();
         const path = pathfinder.findPath(foreground.state.initial, foreground.state.goal);
         const t1 = performance.now();
-        const t2 = (t1 - t0);
+        const t2 = t1 - t0;
         this.setState({
             time: t2,
             nodes: pathfinder.getRecentNodes(),
@@ -385,13 +383,16 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
                             time={this.state.time} nodes={this.state.nodes}
                 />
                 <div>
+                    <GridStaticTiles tileWidth={this.tileWidth}
+                                     tilesX={this.tilesX} tilesY={this.tilesY}
+                    />
                     <GridBackground ref={this.background} tileWidth={this.tileWidth}
                                     tilesX={this.tilesX} tilesY={this.tilesY}
                     />
                     <GridForeground ref={this.foreground} topMargin={75}
-                                    onTilesDragged={() => this.onTilesDragged()} tileSize={this.tileWidth}
+                                    onTilesDragged={() => this.onTilesDragged()}
+                                    tileSize={this.tileWidth}
                                     tilesX={this.tilesX} tilesY={this.tilesY}
-                                    weightOpacity={this.state.weightOpacity}
                     />
                 </div>
             </div>

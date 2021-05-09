@@ -7,7 +7,6 @@ import RadioButtonGroup from '../utility/RadioButtonGroup';
 interface VisualProps {
     onChangeViz: () => void,
     onChangeShowArrows: () => void,
-    onChangeWOpacity: () => void,
     disabled: boolean
 }
 
@@ -34,7 +33,7 @@ interface HeuristicProps {
 }
 
 const SPEED_STEP = 5;
-const SPEED_INITIAL = 0;
+const SPEED_INITIAL = 20;
 const MAX = 20;
 
 export class VisualSettings extends React.Component<VisualProps>
@@ -51,10 +50,6 @@ export class VisualSettings extends React.Component<VisualProps>
                           onChange={this.props.onChangeShowArrows}
                           disabled={this.props.disabled}>
                     Show Tree
-                </Checkbox>
-                <Checkbox defaultChecked={false} boxStyle='box'
-                          onChange={this.props.onChangeWOpacity}>
-                    Translucent Weights
                 </Checkbox>
             </div>
         );

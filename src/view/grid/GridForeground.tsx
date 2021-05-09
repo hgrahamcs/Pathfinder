@@ -11,8 +11,7 @@ interface IProps {
     tilesX: number,
     tilesY: number,
     onTilesDragged: () => void,
-    topMargin: number,
-    weightOpacity: number
+    topMargin: number
 }
 
 interface IState {
@@ -412,7 +411,6 @@ class GridForeground extends React.Component<IProps,IState>
                                   point={point}
                                   tileSize={this.props.tileSize}
                                   doTileAnimation={this.doTileAnimation}
-                                  weightOpacity={this.props.weightOpacity}
                         />
                     );
                     //render a div containing the cost as text
@@ -438,8 +436,7 @@ class GridForeground extends React.Component<IProps,IState>
                      fontSize: this.props.tileSize / 2.1,
                      paddingTop: this.props.tileSize / 3.70,
                      textAlign: 'center',
-                     cursor: 'default',
-                     opacity: this.props.weightOpacity + 0.4
+                     cursor: 'default'
                  }}
             >
                 {cost}

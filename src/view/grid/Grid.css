@@ -45,6 +45,37 @@
     position: absolute;
 }
 
+.tile-viz {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    animation-name: vizAnimation;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes vizAnimation {
+    0% {
+        transform: scale(.1);
+    }
+    100% {
+        transform: scale(1.0);
+        border-color: rgb(190,216,246);
+        border-top-width: 0;
+        border-bottom-width: 1px;
+        border-left-width: 0;
+        border-right-width: 1px;
+        border-style: solid;
+    }
+}
+
 .tile {
     border-color: rgb(190,216,246);
     border-top-width: 0;
@@ -128,7 +159,6 @@
     animation-name: solidAnimation;
     animation-duration: 0.3s;
     animation-timing-function: ease-out;
-    /*animation-delay: 0;*/
     animation-direction: alternate;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
