@@ -94,7 +94,7 @@ class RectGrid implements Grid
      * @param point to mutate at
      * @param solid to determine what default tile to create
      */
-    mutateDefault = (point: Point, solid: boolean) => {
+    mutateDefault(point: Point, solid: boolean) {
         this.mutate(
             point, createTile(solid)
         );
