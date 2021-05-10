@@ -194,27 +194,32 @@ class PathfindingApp extends React.Component<IProps, IState>
         const title = 'Pathfinding Visualizer';
         return (
             <div>
-                <DraggablePanel title='Grid Settings'
-                                show={this.state.panelShow}
-                                onClickXButton={() => this.hideSettings()}
-                                width={350}
-                                height={405}
+                <DraggablePanel
+                    title='Grid Settings'
+                    show={this.state.panelShow}
+                    onClickXButton={() => this.hideSettings()}
+                    width={350}
+                    height={405}
                 >
-                    <VisualSettings disabled={this.state.arrowsDisabled}
-                                    onChangeViz={() => this.settingsManager.changeVisualize()}
-                                    onChangeShowArrows={() => this.settingsManager.changeShowArrows()}
+                    <VisualSettings
+                        disabled={this.state.arrowsDisabled}
+                        onChangeViz={() => this.settingsManager.changeVisualize()}
+                        onChangeShowArrows={() => this.settingsManager.changeShowArrows()}
                     />
-                    <SpeedSettings onChange={(value: number) => this.settingsManager.changeSpeed(value)}
-                                   initialSpeed={this.settingsManager.settings.delayInc}
+                    <SpeedSettings
+                        onChange={(value: number) => this.settingsManager.changeSpeed(value)}
+                        initialSpeed={this.settingsManager.settings.delayInc}
                     />
-                    <AlgorithmSettings disabled={this.state.bidirectionalDisabled}
-                                       onChangeBidirectional={() => this.settingsManager.changeBidirectional()}
+                    <AlgorithmSettings
+                        disabled={this.state.bidirectionalDisabled}
+                        onChangeBidirectional={() => this.settingsManager.changeBidirectional()}
                     />
-                    <HeuristicSettings disabled={this.state.heuristicDisabled}
-                                       onClickManhattan={() => this.settingsManager.changeManhattan()}
-                                       onClickEuclidean={() => this.settingsManager.changeEuclidean()}
-                                       onClickChebyshev={() => this.settingsManager.changeChebyshev()}
-                                       onClickOctile={() => this.settingsManager.changeOctile()}
+                    <HeuristicSettings
+                        disabled={this.state.heuristicDisabled}
+                        onClickManhattan={() => this.settingsManager.changeManhattan()}
+                        onClickEuclidean={() => this.settingsManager.changeEuclidean()}
+                        onClickChebyshev={() => this.settingsManager.changeChebyshev()}
+                        onClickOctile={() => this.settingsManager.changeOctile()}
                     />
                 </DraggablePanel>
                 <TopBar>
@@ -226,46 +231,55 @@ class PathfindingApp extends React.Component<IProps, IState>
                     >
                         {
                             this.state.useIcon ?
-                                <img width={'100%'} height={'100%'}
-                                     className='icon'
-                                     alt={title} src={Icon}/> :
+                                <img
+                                    width={'100%'} height={'100%'}
+                                    className='icon'
+                                    alt={title} src={Icon}
+                                /> :
                                 title
                         }
                     </a>
                     <div className='top-container'>
-                        <AlgorithmDropDown ref={this.algDropDown}
-                                           onClick={() => this.onClickAlgDrop()}
-                                           onChange={(alg: string) => this.changeAlgo(alg)}
+                        <AlgorithmDropDown
+                            ref={this.algDropDown}
+                            onClick={() => this.onClickAlgDrop()}
+                            onChange={(alg: string) => this.changeAlgo(alg)}
                         />
-                        <VisualizeButton active={this.state.visualizing}
-                                         paused={this.state.paused}
-                                         onPause={() => this.pausePathfinding()}
-                                         onResume={() => this.resumePathfinding()}
-                                         onStartStop={() => this.doPathfinding()}
+                        <VisualizeButton
+                            active={this.state.visualizing}
+                            paused={this.state.paused}
+                            onPause={() => this.pausePathfinding()}
+                            onResume={() => this.resumePathfinding()}
+                            onStartStop={() => this.doPathfinding()}
                         />
-                        <ClearDropDown ref={this.clrDropDown}
-                                       onClick={() => this.onClickClrDrop()}
-                                       onClickTiles={() => this.clearTiles()}
-                                       onClickPath={() => this.clearPath()}
-                                       onClickReset={() => this.resetBoard()}
+                        <ClearDropDown
+                            ref={this.clrDropDown}
+                            onClick={() => this.onClickClrDrop()}
+                            onClickTiles={() => this.clearTiles()}
+                            onClickPath={() => this.clearPath()}
+                            onClickReset={() => this.resetBoard()}
                         />
-                        <TilesDropDown ref={this.tilesDropDown}
-                                       onClick={() => this.onClickTilesDrop()}
-                                       onClickTileType={(cost: number) => this.changeTile(cost)}
+                        <TilesDropDown
+                            ref={this.tilesDropDown}
+                            onClick={() => this.onClickTilesDrop()}
+                            onClickTileType={(cost: number) => this.changeTile(cost)}
                         />
-                        <MazeDropDown ref={this.mazeDropDown}
-                                      onClick={() => this.onClickMazeDrop()}
-                                      onClickMaze={() => this.createMaze()}
-                                      onClickMazeHorizontal={() => this.createMazeHSkew()}
-                                      onClickMazeVertical={() => this.createMazeVSkew()}
-                                      onClickRandomTerrain={() => this.createRandomTerrain()}/>
+                        <MazeDropDown
+                            ref={this.mazeDropDown}
+                            onClick={() => this.onClickMazeDrop()}
+                            onClickMaze={() => this.createMaze()}
+                            onClickMazeHorizontal={() => this.createMazeHSkew()}
+                            onClickMazeVertical={() => this.createMazeVSkew()}
+                            onClickRandomTerrain={() => this.createRandomTerrain()}
+                        />
                         <SettingsButton onClick={() => this.toggleSettings()}/>
                     </div>
                 </TopBar>
-                <PathfindingVisualizer ref={this.visualizer}
-                                       onChangeVisualizing={(viz: boolean) => this.changeVButtonColor(viz)}
-                                       settings={this.settingsManager.settings}
-                                       tileWidth={this.tileWidth}/>
+                <PathfindingVisualizer
+                    ref={this.visualizer}
+                    onChangeVisualizing={(viz: boolean) => this.changeVButtonColor(viz)}
+                    settings={this.settingsManager.settings}
+                    tileWidth={this.tileWidth}/>
             </div>
         );
     }

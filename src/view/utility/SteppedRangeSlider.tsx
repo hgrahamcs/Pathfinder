@@ -47,17 +47,20 @@ class SteppedRangeSlider extends React.Component<IProps, IState>
 
     render() {
         return (
-            <input type='range' list='step-list'
-                   value={this.state.value}
-                   min={this.props.min} max={this.props.max}
-                   step={this.props.step} className={this.props.sliderStyle}
-                   onInput={e => this.onChange(e)}
-                   onMouseUp={() => this.onMouseUp()}
-                   onMouseDown={() => this.onMouseDown()}
-                   onTouchEnd={() => this.onMouseUp()}
-                   onTouchStart={() => this.onMouseDown()}
-            >
-            </input>
+            <input
+                type='range'
+                list='step-list'
+                value={this.state.value}
+                min={this.props.min}
+                max={this.props.max}
+                step={this.props.step}
+                className={this.props.sliderStyle}
+                onInput={e => this.onChange(e)}
+                onMouseUp={() => this.onMouseUp()}
+                onMouseDown={() => this.onMouseDown()}
+                onTouchEnd={() => this.onMouseUp()}
+                onTouchStart={() => this.onMouseDown()}
+            />
         );
     }
 }

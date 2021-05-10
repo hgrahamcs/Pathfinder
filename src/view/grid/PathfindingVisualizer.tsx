@@ -401,21 +401,33 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     render() {
         return (
             <div>
-                <StatsPanel ref={this.stats} algorithm={this.state.algorithm}
-                            length={this.state.length} cost={this.state.cost}
-                            time={this.state.time} nodes={this.state.nodes}
+                <StatsPanel
+                    ref={this.stats}
+                    algorithm={this.state.algorithm}
+                    length={this.state.length}
+                    cost={this.state.cost}
+                    time={this.state.time}
+                    nodes={this.state.nodes}
                 />
                 <div>
-                    <GridStaticTiles tileWidth={this.tileWidth}
-                                     tilesX={this.tilesX} tilesY={this.tilesY}
+                    <GridStaticTiles
+                        tileWidth={this.tileWidth}
+                        tilesX={this.tilesX}
+                        tilesY={this.tilesY}
                     />
-                    <GridBackground ref={this.background} tileWidth={this.tileWidth}
-                                    tilesX={this.tilesX} tilesY={this.tilesY}
+                    <GridBackground
+                        ref={this.background}
+                        tileWidth={this.tileWidth}
+                        tilesX={this.tilesX}
+                        tilesY={this.tilesY}
                     />
-                    <GridForeground ref={this.foreground} topMargin={75}
-                                    onTilesDragged={() => this.onTilesDragged()}
-                                    tileSize={this.tileWidth}
-                                    tilesX={this.tilesX} tilesY={this.tilesY}
+                    <GridForeground
+                        ref={this.foreground}
+                        topMargin={75}
+                        onTilesDragged={() => this.onTilesDragged()}
+                        tileSize={this.tileWidth}
+                        tilesX={this.tilesX}
+                        tilesY={this.tilesY}
                     />
                 </div>
             </div>

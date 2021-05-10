@@ -176,9 +176,17 @@ class DraggablePanel extends React.Component<IProps, IState>
 
     render() {
         return (
-            <div ref={this.draggableContainer} className='draggable-container' style={this.getPosition()}>
+            <div
+                ref={this.draggableContainer}
+                className='draggable-container'
+                style={this.getPosition()}
+            >
                 {this.renderDraggable()}
-                <div ref={this.draggableContent} style={this.contentStyle()} className='draggable-content'>
+                <div
+                    ref={this.draggableContent}
+                    style={this.contentStyle()}
+                    className='draggable-content'
+                >
                     <div className='settings-general'>
                         {this.props.children}
                     </div>
@@ -189,19 +197,23 @@ class DraggablePanel extends React.Component<IProps, IState>
 
     renderDraggable() {
         return (
-            <div style={this.draggableStyle()} className='draggable'
-                 ref={this.draggable}
-                 onMouseDown={e => this.mouseDown(e.nativeEvent)}
-                 onTouchStart={e => this.touchStart(e.nativeEvent)}
+            <div
+                style={this.draggableStyle()}
+                className='draggable'
+                ref={this.draggable}
+                onMouseDown={e => this.mouseDown(e.nativeEvent)}
+                onTouchStart={e => this.touchStart(e.nativeEvent)}
             >
                 <div className='draggable-title'>{this.props.title}</div>
-                <div className='x-button' tabIndex={0}
-                     onKeyPress={this.props.onClickXButton}
-                     onClick={this.props.onClickXButton}
-                     onMouseDown={e => {
-                         e.stopPropagation();
-                         e.preventDefault();
-                     }}
+                <div
+                    className='x-button'
+                    tabIndex={0}
+                    onKeyPress={this.props.onClickXButton}
+                    onClick={this.props.onClickXButton}
+                    onMouseDown={e => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }}
                 >
                     <div className='x-text'>
                         X

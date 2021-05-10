@@ -36,9 +36,14 @@ class StatsPanel extends React.Component<IProps>
             this.props.cost +
             '. ';
         return(
-            <textarea tabIndex={-1} ref={this.textLog} readOnly={true}
-                      className='stats-text-area no-select'
-                      value={text} unselectable={'on'} onDrop={() => false}
+            <textarea
+                tabIndex={-1}
+                ref={this.textLog}
+                readOnly={true}
+                className='stats-text-area no-select'
+                value={text}
+                unselectable={'on'}
+                onDrop={() => false}
             />
         );
     }

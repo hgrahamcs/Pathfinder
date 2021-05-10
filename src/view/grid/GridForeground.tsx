@@ -334,27 +334,37 @@ class GridForeground extends React.Component<IProps,IState>
                     {this.renderEndTile(this.state.initial, INITIAL_COLOR,'initial' + this.initialKey)}
                     {this.renderEndTile(this.state.goal, GOAL_COLOR,'goal' + this.goalKey)}
                 </div>
-                <svg ref={this.svg} xmlns='http://www.w3.org/2000/svg' className='arrow-grid'>
+                <svg
+                    ref={this.svg}
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='arrow-grid'
+                >
                     <defs>
-                        <marker id='arrowhead-path' markerWidth='3' markerHeight='3'
-                                refX='0' refY='1.5' orient='auto'
-                                fill={ARROW_PATH_COLOR}
+                        <marker
+                            id='arrowhead-path'
+                            markerWidth='3'
+                            markerHeight='3'
+                            refX='0'
+                            refY='1.5'
+                            orient='auto'
+                            fill={ARROW_PATH_COLOR}
                         >
                             <polygon points='0 0, 3 1.5, 0 3'/>
                         </marker>
                     </defs>
                     {this.renderPath()}
                 </svg>
-                <div className='tiles-table'
-                     onContextMenu={e => e.preventDefault()}
-                     onMouseDown={e => this.mouseDown(e.nativeEvent)}
-                     onMouseUp={e => this.mouseUp(e.nativeEvent)}
-                     onMouseMove={e => this.mouseMove(e.nativeEvent)}
-                     onMouseLeave={e => this.onEndingEvent(e.nativeEvent)}
-                     onTouchStart={e => this.touchStart(e.nativeEvent)}
-                     onTouchMoveCapture={e => this.touchMove(e.nativeEvent)}
-                     onTouchEnd={e => this.onEndingEvent(e.nativeEvent)}
-                     onTouchCancel={e => this.onEndingEvent(e.nativeEvent)}
+                <div
+                    className='tiles-table'
+                    onContextMenu={e => e.preventDefault()}
+                    onMouseDown={e => this.mouseDown(e.nativeEvent)}
+                    onMouseUp={e => this.mouseUp(e.nativeEvent)}
+                    onMouseMove={e => this.mouseMove(e.nativeEvent)}
+                    onMouseLeave={e => this.onEndingEvent(e.nativeEvent)}
+                    onTouchStart={e => this.touchStart(e.nativeEvent)}
+                    onTouchMoveCapture={e => this.touchMove(e.nativeEvent)}
+                    onTouchEnd={e => this.onEndingEvent(e.nativeEvent)}
+                    onTouchCancel={e => this.onEndingEvent(e.nativeEvent)}
                 >
                     {this.renderTilesTable()}
                 </div>
@@ -382,15 +392,17 @@ class GridForeground extends React.Component<IProps,IState>
         const offsetX = (secondX - firstX)/4;
         const offsetY = (secondY - firstY)/4;
         return (
-            <line key={'path ' + index}
-                  x1={firstX + offset + offsetX}
-                  y1={firstY + offset + offsetY}
-                  x2={secondX + offset - offsetX}
-                  y2={secondY + offset - offsetY}
-                  stroke={ARROW_PATH_COLOR}
-                  strokeWidth={2 * this.props.tileSize/BASE_WIDTH}
-                  className='line'
-                  markerEnd='url(#arrowhead-path)' />
+            <line
+                key={'path ' + index}
+                x1={firstX + offset + offsetX}
+                y1={firstY + offset + offsetY}
+                x2={secondX + offset - offsetX}
+                y2={secondY + offset - offsetY}
+                stroke={ARROW_PATH_COLOR}
+                strokeWidth={2 * this.props.tileSize/BASE_WIDTH}
+                className='line'
+                markerEnd='url(#arrowhead-path)'
+            />
         );
     }
 
@@ -405,24 +417,30 @@ class GridForeground extends React.Component<IProps,IState>
                 if(this.state.grid.isSolid(point)) {
                     //render a solid tile div
                     tiles.push(
-                        <SolidFg key={x + ',' + y}
-                                  point={point}
-                                  tileSize={this.props.tileSize}
-                                  doTileAnimation={this.doTileAnimation}
+                        <SolidFg
+                            key={x + ',' + y}
+                            point={point}
+                            tileSize={this.props.tileSize}
+                            doTileAnimation={this.doTileAnimation}
                         />
                     );
                 } else if(cost > 1) {
                     //render a weight svg
                     tiles.push(
-                        <WeightFg key={x + ',' + y}
-                                  point={point}
-                                  tileSize={this.props.tileSize}
-                                  doTileAnimation={this.doTileAnimation}
+                        <WeightFg
+                            key={x + ',' + y}
+                            point={point}
+                            tileSize={this.props.tileSize}
+                            doTileAnimation={this.doTileAnimation}
                         />
                     );
                     //render a div containing the cost as text
                     tiles.push(
-                        this.renderWeightText(point, cost, x + ',' + y + ' text')
+                        this.renderWeightText(
+                            point,
+                            cost,
+                            x + ',' + y + ' text'
+                        )
                     )
                 }
             }
@@ -432,19 +450,20 @@ class GridForeground extends React.Component<IProps,IState>
 
     renderWeightText(point: Point, cost: number, key: string) {
         return (
-            <div key={key}
-                 style={{
-                     left: point.x * this.props.tileSize,
-                     top: point.y * this.props.tileSize,
-                     width: this.props.tileSize,
-                     height: this.props.tileSize,
-                     position: 'absolute',
-                     color: 'white',
-                     fontSize: this.props.tileSize / 2.1,
-                     paddingTop: this.props.tileSize / 3.70,
-                     textAlign: 'center',
-                     cursor: 'default'
-                 }}
+            <div
+                key={key}
+                style={{
+                    left: point.x * this.props.tileSize,
+                    top: point.y * this.props.tileSize,
+                    width: this.props.tileSize,
+                    height: this.props.tileSize,
+                    position: 'absolute',
+                    color: 'white',
+                    fontSize: this.props.tileSize / 2.1,
+                    paddingTop: this.props.tileSize / 3.70,
+                    textAlign: 'center',
+                    cursor: 'default'
+                }}
             >
                 {cost}
             </div>
@@ -452,9 +471,14 @@ class GridForeground extends React.Component<IProps,IState>
     }
 
     renderEndTile(point: Point, color: string, key: string) {
-        return <TileFg key={key} point={point}
-                       tileWidth={this.props.tileSize}
-                       color={color}/>
+        return (
+            <TileFg
+                key={key}
+                point={point}
+                tileWidth={this.props.tileSize}
+                color={color}
+            />
+        );
     }
 }
 

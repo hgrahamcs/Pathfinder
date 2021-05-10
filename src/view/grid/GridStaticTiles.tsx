@@ -68,7 +68,11 @@ class GridStaticTiles extends React.Component<IProps>
             left: left
         };
         return (
-            <div key={point.x + ',' + point.y} style={style} className='tile'/>
+            <div
+                key={point.x + ',' + point.y}
+                style={style}
+                className='tile'
+            />
         );
     }
 }

@@ -50,11 +50,13 @@ class RadioButtonGroup extends React.Component<IProps, IState>
         for(let i = 0; i < this.props.onChange.length; i++) {
             radioButtons.push(
                 <div key={i}>
-                    <input checked={this.state.checked[i]} type='radio' disabled={this.props.disabled}
-                           className={this.props.boxStyle}
-                           onChange={() => this.onChange(i)}
-                    >
-                    </input>
+                    <input
+                        checked={this.state.checked[i]}
+                        type='radio'
+                        disabled={this.props.disabled}
+                        className={this.props.boxStyle}
+                        onChange={() => this.onChange(i)}
+                    />
                     {children[i]}
                 </div>
             );

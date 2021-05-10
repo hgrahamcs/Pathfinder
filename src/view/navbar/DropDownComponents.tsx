@@ -35,7 +35,13 @@ class Clickable extends React.Component<ClickableProps>
 {
     render() {
         return (
-            <div tabIndex={0} onKeyPress={this.props.click} onClick={this.props.click}>{this.props.children}</div>
+            <div
+                tabIndex={0}
+                onKeyPress={this.props.click}
+                onClick={this.props.click}
+            >
+                {this.props.children}
+            </div>
         )
     }
 }
@@ -65,17 +71,20 @@ export class AlgorithmDropDown extends DropDown<AlgProps, DropDownTextState>
 
     render() {
         return (
-            <div tabIndex={0} className='alg-drop-down drop-down'
-                 onMouseDown={e => e.preventDefault()}
-                 onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                 onClick={(e) => this.toggle(e.nativeEvent)}
+            <div
+                tabIndex={0}
+                className='alg-drop-down drop-down'
+                onMouseDown={e => e.preventDefault()}
+                onKeyPress={(e) => this.toggle(e.nativeEvent)}
+                onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='alg-drop-down-button drop-down-button'>
                     <span className='alg-drop-down-text drop-down-text'>{this.state.text}</span>
                     <span className={'alg-arr ' + this.arrowClass()}/>
                 </div>
-                <div style={this.contentStyle()}
-                     className={this.state.fade + ' alg-drop-down-content drop-down-content'}
+                <div
+                    style={this.contentStyle()}
+                    className={this.state.fade + ' alg-drop-down-content drop-down-content'}
                 >
                     <Clickable click={() => this.onChange('a*', 'A* Search')}>A* Search</Clickable>
                     <Clickable click={() => this.onChange('dijkstra', 'Dijkstra')}>Dijkstra's Algorithm</Clickable>
@@ -105,17 +114,20 @@ export class ClearDropDown extends DropDown<ClrProps, DropDownState>
 
     render() {
         return (
-            <div tabIndex={0} className='clr-drop-down drop-down'
-                 onMouseDown={e => e.preventDefault()}
-                 onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                 onClick={(e) => this.toggle(e.nativeEvent)}
+            <div
+                tabIndex={0}
+                className='clr-drop-down drop-down'
+                onMouseDown={e => e.preventDefault()}
+                onKeyPress={(e) => this.toggle(e.nativeEvent)}
+                onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='clr-drop-down-button drop-down-button'>
                     <span className='clr-drop-down-text drop-down-text'>Reset</span>
                     <span className={'clr-arr ' + this.arrowClass()}/>
                 </div>
-                <div style={this.contentStyle()}
-                     className={this.state.fade + ' clr-drop-down-content drop-down-content'}
+                <div
+                    style={this.contentStyle()}
+                    className={this.state.fade + ' clr-drop-down-content drop-down-content'}
                 >
                     <Clickable click={this.props.onClickPath}>Clear Path</Clickable>
                     <Clickable click={this.props.onClickTiles}>Clear Tiles</Clickable>
@@ -143,17 +155,19 @@ export class MazeDropDown extends DropDown<MazeProps, DropDownState>
 
     render() {
         return (
-            <div tabIndex={0} className='maze-drop-down drop-down'
-                 onMouseDown={e => e.preventDefault()}
-                 onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                 onClick={(e) => this.toggle(e.nativeEvent)}
+            <div
+                tabIndex={0} className='maze-drop-down drop-down'
+                onMouseDown={e => e.preventDefault()}
+                onKeyPress={(e) => this.toggle(e.nativeEvent)}
+                onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='maze-drop-down-button drop-down-button'>
                     <span className='maze-drop-down-text drop-down-text'>Terrain</span>
                     <span className={'clr-arr ' + this.arrowClass()}/>
                 </div>
-                <div style={this.contentStyle()}
-                     className={this.state.fade + ' maze-drop-down-content drop-down-content'}
+                <div
+                    style={this.contentStyle()}
+                    className={this.state.fade + ' maze-drop-down-content drop-down-content'}
                 >
                     <Clickable click={this.props.onClickMaze}>Recursive Maze Division</Clickable>
                     <Clickable click={this.props.onClickMazeHorizontal}>Horizontal Skewed Maze</Clickable>
@@ -190,17 +204,20 @@ export class TilesDropDown extends DropDown<TileProps, DropDownTextState>
 
     render() {
         return (
-            <div tabIndex={0} className='tiles-drop-down drop-down'
-                 onMouseDown={e => e.preventDefault()}
-                 onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                 onClick={(e) => this.toggle(e.nativeEvent)}
+            <div
+                tabIndex={0}
+                className='tiles-drop-down drop-down'
+                onMouseDown={e => e.preventDefault()}
+                onKeyPress={(e) => this.toggle(e.nativeEvent)}
+                onClick={(e) => this.toggle(e.nativeEvent)}
             >
                 <div className='tiles-drop-down-button drop-down-button'>
                     <span className='tiles-drop-down-text drop-down-text'>{this.state.text}</span>
                     <span className={'clr-arr ' + this.arrowClass()}/>
                 </div>
-                <div style={this.contentStyle()}
-                     className={this.state.fade + ' tiles-drop-down-content drop-down-content'}
+                <div
+                    style={this.contentStyle()}
+                    className={this.state.fade + ' tiles-drop-down-content drop-down-content'}
                 >
                     <Clickable click={() => this.onChange(-1, 'Wall [∞]')}>Wall [∞]</Clickable>
                     <Clickable click={() => this.onChange(2, 'Weight [2]')}>Weight [2]</Clickable>

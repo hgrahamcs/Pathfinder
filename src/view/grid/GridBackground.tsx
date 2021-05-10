@@ -199,11 +199,19 @@ class GridBackground extends React.Component<IProps,IState>
                 <div className='bg'>
                     {this.renderViz()}
                 </div>
-                <svg xmlns='http://www.w3.org/2000/svg' className='bg-grid'>
+                <svg
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='bg-grid'
+                >
                     <defs>
-                        <marker id='arrowhead' markerWidth='3' markerHeight='3'
-                                refX='0' refY='1.5' orient='auto'
-                                fill={ARROW_COLOR}
+                        <marker
+                            id='arrowhead'
+                            markerWidth='3'
+                            markerHeight='3'
+                            refX='0'
+                            refY='1.5'
+                            orient='auto'
+                            fill={ARROW_COLOR}
                         >
                             <polygon points='0 0, 3 1.5, 0 3'/>
                         </marker>
@@ -229,15 +237,19 @@ class GridBackground extends React.Component<IProps,IState>
             const secondY = second.y * width;
             const offsetX = (secondX - firstX)/4;
             const offsetY = (secondY - firstY)/4;
-            arrows.push(<line key={'arrow ' + i}
-                              x1={firstX + offset + offsetX}
-                              y1={firstY + offset + offsetY}
-                              x2={secondX + offset - offsetX}
-                              y2={secondY + offset - offsetY}
-                              stroke={ARROW_COLOR}
-                              strokeWidth={2 * this.tileWidth/BASE_WIDTH}
-                              className='line-arrow'
-                              markerEnd='url(#arrowhead)' />);
+            arrows.push(
+                <line
+                    key={'arrow ' + i}
+                    x1={firstX + offset + offsetX}
+                    y1={firstY + offset + offsetY}
+                    x2={secondX + offset - offsetX}
+                    y2={secondY + offset - offsetY}
+                    stroke={ARROW_COLOR}
+                    strokeWidth={2 * this.tileWidth/BASE_WIDTH}
+                    className='line-arrow'
+                    markerEnd='url(#arrowhead)'
+                />
+            );
         }
         return arrows;
     }
@@ -274,9 +286,11 @@ class GridBackground extends React.Component<IProps,IState>
             left: left
         };
         return (
-            <div key={point.x + ',' + point.y}
-                 style={style}
-                 className={this.tileClass}/>
+            <div
+                key={point.x + ',' + point.y}
+                style={style}
+                className={this.tileClass}
+            />
         );
     }
 }

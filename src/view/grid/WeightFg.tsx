@@ -19,15 +19,16 @@ class WeightFg extends React.Component<WeightProps>
 
     render() {
         return (
-            <div style={{
-                left: this.props.point.x * this.props.tileSize,
-                top: this.props.point.y * this.props.tileSize,
-                width: this.props.tileSize,
-                height: this.props.tileSize,
-                backgroundImage: `url(${Weight})`,
-                position: 'absolute'
-            }}
-                 className={this.doTileAnimation ? 'weight-animation' : 'weight'}
+            <div
+                style={{
+                    left: this.props.point.x * this.props.tileSize,
+                    top: this.props.point.y * this.props.tileSize,
+                    width: this.props.tileSize,
+                    height: this.props.tileSize,
+                    backgroundImage: `url(${Weight})`,
+                    position: 'absolute'
+                }}
+                className={this.doTileAnimation ? 'weight-animation' : 'weight'}
             />
         );
     }

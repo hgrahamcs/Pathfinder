@@ -7,9 +7,13 @@ class TopBar extends React.Component
 
     render() {
         return (
-            <div ref={this.bar} style={{
-                width: window.screen.availWidth
-            }} className='top-navbar'>
+            <div
+                ref={this.bar}
+                style={{
+                    width: window.screen.availWidth
+                }}
+                className='top-navbar'
+            >
                 {this.props.children}
             </div>
         );

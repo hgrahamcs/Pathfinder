@@ -42,13 +42,19 @@ export class VisualSettings extends React.Component<VisualProps>
         return (
             <div>
                 <div className='draggable-content-title'>Visualization</div>
-                <Checkbox defaultChecked={true} boxStyle='box'
-                          onChange={this.props.onChangeViz}>
+                <Checkbox
+                    defaultChecked={true}
+                    boxStyle='box'
+                    onChange={this.props.onChangeViz}
+                >
                     Show Frontier
                 </Checkbox>
-                <Checkbox defaultChecked={true} boxStyle='box'
-                          onChange={this.props.onChangeShowArrows}
-                          disabled={this.props.disabled}>
+                <Checkbox
+                    defaultChecked={true}
+                    boxStyle='box'
+                    onChange={this.props.onChangeShowArrows}
+                    disabled={this.props.disabled}
+                >
                     Show Tree
                 </Checkbox>
             </div>
@@ -88,10 +94,13 @@ export class SpeedSettings extends React.Component<SpeedProps, SpeedState>
                 <div className='slider-text'>
                     Speed: <div className='speed-text'> {this.state.speedText} </div>
                 </div>
-                    <SteppedRangeSlider min={1} max={MAX} step={1}
-                                        default={(this.props.initialSpeed - SPEED_INITIAL) / SPEED_STEP}
-                                        sliderStyle='slider speed-slider'
-                                        onChange={(value: number) => this.onChangeSpeed(value)}
+                <SteppedRangeSlider
+                    min={1}
+                    max={MAX}
+                    step={1}
+                    default={(this.props.initialSpeed - SPEED_INITIAL) / SPEED_STEP}
+                    sliderStyle='slider speed-slider'
+                    onChange={(value: number) => this.onChangeSpeed(value)}
                 />
                 <datalist id='step-list'>
                     {options}
@@ -114,9 +123,12 @@ export class AlgorithmSettings extends React.Component<AlgorithmProps>
         return (
             <div>
                 <div className='draggable-content-title'>Algorithm</div>
-                <Checkbox defaultChecked={false} boxStyle='box'
-                          disabled={this.props.disabled}
-                          onChange={this.props.onChangeBidirectional}>
+                <Checkbox
+                    defaultChecked={false}
+                    boxStyle='box'
+                    disabled={this.props.disabled}
+                    onChange={this.props.onChangeBidirectional}
+                >
                     Bidirectional
                 </Checkbox>
             </div>
@@ -149,16 +161,21 @@ export class HeuristicSettings extends React.Component<HeuristicProps>
         return (
             <div>
                 <div className='draggable-content-title'>Heuristic</div>
-                <RadioButtonGroup boxStyle='box'
-                                  defaultChecked={0}
-                                  disabled={this.props.disabled}
-                                  onChange={[
-                                      this.props.onClickManhattan, this.props.onClickEuclidean,
-                                      this.props.onClickChebyshev, this.props.onClickOctile
-                                  ]}
+                <RadioButtonGroup
+                    boxStyle='box'
+                    defaultChecked={0}
+                    disabled={this.props.disabled}
+                    onChange={[
+                        this.props.onClickManhattan, this.props.onClickEuclidean,
+                        this.props.onClickChebyshev, this.props.onClickOctile
+                    ]}
                 >
-                    {[<span key='Manhattan'>Manhattan</span>, <span key='Euclidean'>Euclidean</span>,
-                        <span key='Chebyshev'>Chebyshev</span>, <span key='Octile<'>Octile</span>]}
+                    {[
+                        <span key='Manhattan'>Manhattan</span>,
+                        <span key='Euclidean'>Euclidean</span>,
+                        <span key='Chebyshev'>Chebyshev</span>,
+                        <span key='Octile<'>Octile</span>
+                    ]}
                 </RadioButtonGroup>
             </div>
         )
