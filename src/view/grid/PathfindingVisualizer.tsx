@@ -40,6 +40,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     private visualTimeouts: VirtualTimer[]  = [];
     private generations: Node[] = [];
     private paused = false;
+    private wasPaused = false; //paused before alt tab?
 
     private mazeTile: TileData = createTile(true);
 
@@ -65,10 +66,13 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
 
     componentDidMount() {
         window.addEventListener('blur', () => {
-            this.pausePathfinding();
+            this.wasPaused = this.isPaused();
+            if(!this.wasPaused) {
+                this.pausePathfinding();
+            }
         });
         window.addEventListener('focus', () => {
-            if(this.isPaused()) {
+            if(this.isPaused() && !this.wasPaused) {
                 this.resumePathfinding();
             }
         });
