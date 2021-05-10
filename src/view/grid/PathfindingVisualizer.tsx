@@ -39,6 +39,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     private visualizing = false;
     private visualTimeouts: VirtualTimer[]  = [];
     private generations: Node[] = [];
+    private paused = false;
 
     private mazeTile: TileData = createTile(true);
 
@@ -60,6 +61,17 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
             nodes: -1,
             algorithm: ''
         }
+    }
+
+    componentDidMount() {
+        window.addEventListener('blur', () => {
+            this.pausePathfinding();
+        });
+        window.addEventListener('focus', () => {
+            if(this.isPaused()) {
+                this.resumePathfinding();
+            }
+        });
     }
 
     shouldComponentUpdate(nextProps: Readonly<IProps>, nextState: Readonly<IState>) {
@@ -86,10 +98,15 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         return settings.visualizeAlg;
     }
 
+    isPaused() {
+        return this.paused;
+    }
+
     /**
      * Pause the delayed pathfinding algorithm being performed
      */
     pausePathfinding() {
+        this.paused = true;
         for(const timeout of this.visualTimeouts) {
             timeout.pause();
         }
@@ -101,6 +118,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
      * if not properly called while the timeout is paused
      */
     resumePathfinding() {
+        this.paused = false;
         for(const timeout of this.visualTimeouts) {
             timeout.resume();
         }
@@ -130,6 +148,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
      * If the visualizer is currently visualizing, the visualization stops instead
      */
     doDelayedPathfinding() {
+        this.paused = false;
         this.clearVisualization();
         this.clearPath();
         const settings = this.props.settings;

@@ -310,6 +310,8 @@ class GridForeground extends React.Component<IProps,IState>
     }
 
     resetPoints() {
+        this.initialKey++;
+        this.goalKey++;
         const end = this.calcEndPointInView();
         this.setState({
             initial: {
