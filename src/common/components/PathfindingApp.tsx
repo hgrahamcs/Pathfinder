@@ -1,14 +1,29 @@
 import React, {RefObject} from 'react';
 import TopBar from './navbar/TopBar';
-import {VisualizeButton, SettingsButton} from './navbar/Buttons';
-import {AlgorithmDropDown, ClearDropDown, MazeDropDown, TilesDropDown} from './navbar/DropDownComponents';
-import DraggablePanel from './utility/DraggablePanel';
+import {SettingsButton, VisualizeButton} from './navbar/Buttons';
+import {
+    AlgorithmDropDown,
+    ClearDropDown,
+    MazeDropDown,
+    TilesDropDown
+} from './navbar/DropDownComponents';
+import {
+    AlgorithmSettings,
+    HeuristicSettings, 
+    SpeedSettings,
+    VisualSettings
+} from './navbar/SettingPanels';
+import DraggablePanel from './panel/DraggablePanel';
 import PathfindingVisualizer from './grid/PathfindingVisualizer';
-import {VisualSettings, SpeedSettings, AlgorithmSettings, HeuristicSettings} from './navbar/SettingPanels';
-import SettingsManager from './SettingsManager';
+import SettingsManager from '../utils/SettingsManager';
 import PathfinderBuilder from '../pathfinding/algorithms/PathfinderBuilder';
-import {MAZE, MAZE_HORIZONTAL_SKEW, MAZE_VERTICAL_SKEW, RANDOM_TERRAIN} from '../pathfinding/algorithms/TerrainGeneratorBuilder';
-import Icon from './web-content/react.png';
+import {
+    MAZE,
+    MAZE_HORIZONTAL_SKEW,
+    MAZE_VERTICAL_SKEW,
+    RANDOM_TERRAIN
+} from '../pathfinding/algorithms/TerrainGeneratorBuilder';
+import Icon from '../../images/react.png';
 
 interface IProps {}
 

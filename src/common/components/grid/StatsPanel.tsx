@@ -1,5 +1,4 @@
 import React, {RefObject} from 'react';
-import './Grid.css';
 
 interface IProps {
     algorithm: string,

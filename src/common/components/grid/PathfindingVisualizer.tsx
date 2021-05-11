@@ -1,18 +1,17 @@
 import React, {RefObject} from 'react';
-import './Grid.css';
 import GridBackground from './GridBackground';
 import GridForeground from './GridForeground';
 import StatsPanel from './StatsPanel';
+import GridStaticTiles from './GridStaticTiles';
 import {Node} from '../../pathfinding/algorithms/Node';
-import PathfindingSettings from '../PathfindingSettings';
 import PathfinderBuilder from '../../pathfinding/algorithms/PathfinderBuilder';
 import Pathfinder from '../../pathfinding/algorithms/Pathfinder';
-import {createTile, Point, Tile, TileData} from '../../pathfinding/core/Components';
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
-import VirtualTimer from '../utility/VirtualTimer';
 import TerrainGeneratorBuilder, {RANDOM_TERRAIN} from '../../pathfinding/algorithms/TerrainGeneratorBuilder';
+import {createTile, Point, Tile, TileData} from '../../pathfinding/core/Components';
 import {HashSet, stringify} from '../../pathfinding/structures/Hash';
-import GridStaticTiles from './GridStaticTiles';
+import PathfindingSettings from '../../utils/PathfindingSettings';
+import VirtualTimer from '../../utils/VirtualTimer';
 
 interface IProps {
     tileWidth: number,
@@ -323,7 +322,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     /**
-     * Calculate the end/goal point in view of the screen
+     * Calculate the end/goal point in common of the screen
      */
     calcEndPointInView() {
         const xEnd = window.innerWidth / this.tileWidth;

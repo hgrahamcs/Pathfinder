@@ -65,7 +65,7 @@ class RectGrid implements Grid
      * a mutate function
      * @param point, point to get
      */
-    get(point: Point): Tile {
+    get(point: Point) {
         return {
             point: this.tiles[point.y][point.x].point,
             data: this.tiles[point.y][point.x].data

@@ -1,5 +1,4 @@
 import React, {RefObject} from 'react';
-import './DraggablePanel.css'
 
 interface IProps {
     title: string,

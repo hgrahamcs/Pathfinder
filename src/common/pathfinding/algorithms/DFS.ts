@@ -1,42 +1,44 @@
 import Pathfinder, {reconstructPath} from './Pathfinder';
+import {Node} from './Node';
 import {Point, Tile} from '../core/Components';
 import {HashSet, stringify} from '../structures/Hash';
-import {Node} from './Node';
+import Stack from '../structures/Stack';
 
-class BFSPathfinder extends Pathfinder
+class DFSPathfinder extends Pathfinder
 {
     getAlgorithmName(): string {
-        return 'Breadth First Search';
+        return 'Depth First Search';
     }
 
     /**
-     * Implementation of BFS to find the shortest path from initial to point
-     * Doesn't always return the shortest path, and performs poorly on larger grids
+     * Calls DFS between a start and goal point, will typically not find the 'Best' path,
+     * and will instead find the best path capable for the algorithm
+     * As this algorithm is non optimal it should only be used for educational purposes
      * @param initial
      * @param goal
      */
     findPath(initial: Point, goal: Point): Tile[] {
         this.clearRecentSearch();
         const grid = this.navigator.getGrid();
-        const frontier: Node[] = []; //fifo, stores nodes on the frontier
-        const visited = new HashSet();
         const root = new Node(grid.get(initial));
-        frontier.push(root); //enqueue
-        visited.add(stringify(initial));
-        while(frontier.length !== 0) { //not empty
-            const currentNode = frontier.shift()!; //dequeue
+        const frontier = new Stack<Node>();
+        frontier.push(root);
+        const visited = new HashSet();
+        while(!frontier.isEmpty()) {
+            const currentNode = frontier.pop()!;
             const currentPoint = currentNode.tile.point;
+            visited.add(stringify(currentPoint));
             this.addRecent(currentNode);
             if(this.navigator.equals(currentPoint, goal)) {
                 return reconstructPath(currentNode);
             }
-            for(const neighbor of this.navigator.neighbors(currentPoint)) {
+            const neighbors = this.navigator.neighbors(currentPoint).reverse();
+            for(const neighbor of neighbors){
                 const neighborKey = stringify(neighbor.point);
                 if(!visited.has(neighborKey)) {
                     const neighborNode = new Node(neighbor);
                     currentNode.addChild(neighborNode);
-                    frontier.push(neighborNode); //enqueue
-                    visited.add(neighborKey);
+                    frontier.push(neighborNode);
                 }
             }
         }
@@ -44,4 +46,4 @@ class BFSPathfinder extends Pathfinder
     }
 }
 
-export default BFSPathfinder;
+export default DFSPathfinder;

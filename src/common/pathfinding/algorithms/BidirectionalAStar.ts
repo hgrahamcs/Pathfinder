@@ -1,10 +1,10 @@
+import Pathfinder, {reconstructPath, reconstructPathReversed} from './Pathfinder';
+import {euclidean, HeuristicFunc} from './Heuristics';
+import {AStarNode} from './Node';
+import {Point, Tile} from '../core/Components';
+import Navigator from '../core/Navigator';
 import {HashSet, HashTable, stringify} from '../structures/Hash';
 import Heap from '../structures/Heap';
-import Pathfinder, {reconstructPath, reconstructPathReversed} from './Pathfinder';
-import {Point, Tile} from '../core/Components';
-import {AStarNode} from './Node';
-import Navigator from '../core/Navigator';
-import {euclidean, HeuristicFunc} from './Heuristics';
 
 interface ControlStructures {
     openSet: HashTable<AStarNode>,

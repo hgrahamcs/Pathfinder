@@ -1,5 +1,4 @@
 import React, {RefObject} from 'react';
-import './Navbar.css'
 
 class TopBar extends React.Component
 {

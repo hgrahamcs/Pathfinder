@@ -1,5 +1,4 @@
 import React from 'react';
-import './Grid.css';
 import {Node} from '../../pathfinding/algorithms/Node';
 import {Point} from '../../pathfinding/core/Components';
 

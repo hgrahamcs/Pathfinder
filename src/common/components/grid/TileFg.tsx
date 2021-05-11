@@ -1,5 +1,4 @@
 import React from 'react';
-import './Grid.css';
 import {Point} from '../../pathfinding/core/Components';
 
 interface TileProps {

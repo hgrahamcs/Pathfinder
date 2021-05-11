@@ -1,5 +1,5 @@
-import {Point} from '../../pathfinding/core/Components';
 import React from 'react';
+import {Point} from '../../pathfinding/core/Components';
 
 interface SolidProps {
     tileSize: number,

@@ -1,5 +1,4 @@
 import React, {RefObject} from 'react';
-import './Grid.css';
 import {createTile, Point, Tile, TileData} from '../../pathfinding/core/Components';
 import RectGrid, {Grid} from '../../pathfinding/core/Grid';
 import TileFg from './TileFg';

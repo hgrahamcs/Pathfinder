@@ -2,7 +2,14 @@ import Navigator from '../core/Navigator';
 import PlusNavigator from '../core/PlusNavigator';
 import {Point} from '../core/Components';
 import {Grid} from '../core/Grid';
-import {chebyshev, euclidean, HeuristicFunc, manhattan, nullHeuristic, octile} from './Heuristics';
+import {
+    chebyshev,
+    euclidean,
+    HeuristicFunc,
+    manhattan,
+    nullHeuristic,
+    octile
+} from './Heuristics';
 import Pathfinder from './Pathfinder';
 import AStarPathfinder from './AStar';
 import BFSPathfinder from './BFS';

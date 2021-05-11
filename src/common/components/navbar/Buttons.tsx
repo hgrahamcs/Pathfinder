@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navbar.css'
 
 interface VProps {
     active: boolean,

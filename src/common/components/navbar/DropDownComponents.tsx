@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navbar.css'
 import DropDown, {DropDownProps, DropDownState} from './DropDown';
 
 interface AlgProps extends DropDownProps {

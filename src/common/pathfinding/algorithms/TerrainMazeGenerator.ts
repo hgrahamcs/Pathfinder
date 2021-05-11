@@ -1,6 +1,6 @@
-import RectGrid, {Grid} from '../core/Grid';
-import {Point, Tile, createTile, TileData} from '../core/Components';
 import TerrainGenerator from './TerrainGenerator';
+import RectGrid, {Grid} from '../core/Grid';
+import {createTile, Point, Tile, TileData} from '../core/Components';
 
 const LIMIT = 2;
 
