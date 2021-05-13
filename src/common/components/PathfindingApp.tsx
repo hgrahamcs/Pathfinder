@@ -69,14 +69,8 @@ class PathfindingApp extends React.Component<IProps, IState>
             paused: false,
             useIcon: this.useIcon()
         }
-        const speed = this.state.settings.delayInc;
         const mobile = isMobile();
         this.tileWidth =  mobile ? 47 : Math.round(window.screen.availWidth / 57);
-        if(mobile) {
-            this.changeSpeed(speed + 20);
-        } else if(window.screen.availWidth > 2500) {
-            this.changeSpeed(speed + 10);
-        }
     }
 
     /**
