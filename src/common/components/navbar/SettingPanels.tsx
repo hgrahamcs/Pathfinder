@@ -6,7 +6,9 @@ import RadioButtonGroup from '../panel/RadioButtonGroup';
 interface VisualProps {
     onChangeViz: () => void,
     onChangeShowArrows: () => void,
-    disabled: boolean
+    onChangeShowScores: () => void,
+    disabledTree: boolean,
+    disabledScore: boolean
 }
 
 interface SpeedProps {
@@ -46,15 +48,23 @@ export class VisualSettings extends React.Component<VisualProps>
                     boxStyle='box'
                     onChange={this.props.onChangeViz}
                 >
-                    Show Frontier
+                    Show Visualization
                 </Checkbox>
                 <Checkbox
                     defaultChecked={true}
                     boxStyle='box'
                     onChange={this.props.onChangeShowArrows}
-                    disabled={this.props.disabled}
+                    disabled={this.props.disabledTree}
                 >
                     Show Tree
+                </Checkbox>
+                <Checkbox
+                    defaultChecked={false}
+                    boxStyle='box'
+                    onChange={this.props.onChangeShowScores}
+                    disabled={this.props.disabledScore}
+                >
+                    Show Scores
                 </Checkbox>
             </div>
         );
