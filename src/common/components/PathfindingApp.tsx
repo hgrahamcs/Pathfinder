@@ -325,6 +325,9 @@ class PathfindingApp extends React.Component<IProps, IState>
                     height={425}
                 >
                     <VisualSettings
+                        defaultViz={this.state.settings.visualizeAlg}
+                        defaultShowArrows={this.state.settings.showArrows}
+                        defaultShowScores={this.state.settings.showScores}
                         disabledTree={this.state.arrowsDisabled}
                         disabledScore={this.state.scoreDisabled}
                         onChangeViz={() => this.changeVisualize()}
@@ -336,10 +339,12 @@ class PathfindingApp extends React.Component<IProps, IState>
                         initialSpeed={this.state.settings.delayInc}
                     />
                     <AlgorithmSettings
+                        defaultAlg={this.state.settings.bidirectional}
                         disabled={this.state.bidirectionalDisabled}
                         onChangeBidirectional={() => this.changeBidirectional()}
                     />
                     <HeuristicSettings
+                        defaultHeuristic={this.state.settings.heuristicKey}
                         disabled={this.state.heuristicDisabled}
                         onClickManhattan={() => this.changeManhattan()}
                         onClickEuclidean={() => this.changeEuclidean()}

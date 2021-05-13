@@ -4,6 +4,9 @@ import SteppedRangeSlider from '../panel/SteppedRangeSlider';
 import RadioButtonGroup from '../panel/RadioButtonGroup';
 
 interface VisualProps {
+    defaultViz: boolean,
+    defaultShowArrows: boolean,
+    defaultShowScores: boolean,
     onChangeViz: () => void,
     onChangeShowArrows: () => void,
     onChangeShowScores: () => void,
@@ -21,11 +24,13 @@ interface SpeedState {
 }
 
 interface AlgorithmProps {
+    defaultAlg: boolean,
     onChangeBidirectional: (checked: boolean) => void,
     disabled: boolean
 }
 
 interface HeuristicProps {
+    defaultHeuristic: string
     onClickManhattan: () => void,
     onClickEuclidean: () => void,
     onClickChebyshev: () => void,
@@ -44,14 +49,14 @@ export class VisualSettings extends React.Component<VisualProps>
             <div>
                 <div className='draggable-content-title'>Visualization</div>
                 <Checkbox
-                    defaultChecked={true}
+                    defaultChecked={this.props.defaultViz}
                     boxStyle='box'
                     onChange={this.props.onChangeViz}
                 >
                     Show Visualization
                 </Checkbox>
                 <Checkbox
-                    defaultChecked={true}
+                    defaultChecked={this.props.defaultShowArrows}
                     boxStyle='box'
                     onChange={this.props.onChangeShowArrows}
                     disabled={this.props.disabledTree}
@@ -59,7 +64,7 @@ export class VisualSettings extends React.Component<VisualProps>
                     Show Tree
                 </Checkbox>
                 <Checkbox
-                    defaultChecked={false}
+                    defaultChecked={this.props.defaultShowScores}
                     boxStyle='box'
                     onChange={this.props.onChangeShowScores}
                     disabled={this.props.disabledScore}
@@ -133,7 +138,7 @@ export class AlgorithmSettings extends React.Component<AlgorithmProps>
             <div>
                 <div className='draggable-content-title'>Algorithm</div>
                 <Checkbox
-                    defaultChecked={false}
+                    defaultChecked={this.props.defaultAlg}
                     boxStyle='box'
                     disabled={this.props.disabled}
                     onChange={this.props.onChangeBidirectional}
@@ -166,13 +171,23 @@ export class HeuristicSettings extends React.Component<HeuristicProps>
         })
     }
 
+    getIndex(heuristic: string) {
+        const mapping: {[key: string]: number} = {
+            'manhattan': 0,
+            'euclidean': 1,
+            'chebyshev': 2,
+            'octile': 3
+        }
+        return mapping[heuristic];
+    }
+
     render() {
         return (
             <div>
                 <div className='draggable-content-title'>Heuristic</div>
                 <RadioButtonGroup
                     boxStyle='box'
-                    defaultChecked={0}
+                    defaultChecked={this.getIndex(this.props.defaultHeuristic)}
                     disabled={this.props.disabled}
                     onChange={[
                         this.props.onClickManhattan, this.props.onClickEuclidean,
