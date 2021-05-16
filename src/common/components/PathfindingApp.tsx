@@ -359,12 +359,15 @@ class PathfindingApp extends React.Component<IProps, IState>
                     />
                 </DraggablePanel>
                 <TopBar>
-                    <a href='/' className='title'
+                    <a className='title'
                        style={{
                            width: this.state.useIcon ? 70 : 'auto',
                            height: this.state.useIcon ? 52 : '100%'
                        }}
-                       onClick={() => this.seeTutorial()}
+                       onClick={() => {
+                           this.seeTutorial()
+                           window.location.reload()
+                       }}
                     >
                         {icon}
                     </a>
