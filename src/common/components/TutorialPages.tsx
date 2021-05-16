@@ -1,7 +1,8 @@
 import React from 'react'
-import WeightTileImg from '../../images/weight-tile.png'
 import Icon from '../../images/react.png';
-import PathfinderImg from '../../images/pathfinder.png'
+import WeightTileImg from '../../images/weight-tile.png';
+import PathfinderImg from '../../images/pathfinder.png';
+import StartGoalImg from '../../images/start-goal.png';
 
 function getIntroductionPage() {
     return (
@@ -44,6 +45,54 @@ function getExplanationPage() {
     );
 }
 
+function getDrawingPage() {
+    return (
+        <div key='draw'>
+            <h1 className='tutorial-title'>
+                Drawing Walls and Weights
+            </h1>
+            <div className='tutorial-subtext'>
+                Click and drag on the empty tiles to draw walls or weights.
+                Click and drag on filled tiles to erase.
+                Click the purple drop down menu to change which wall or weight to draw.
+                Generate terrain by clicking the yellow drop down menu.
+            </div>
+            <div className='tutorial-subtext'>
+                Walls cannot be traveled to, and are therefore not explored by any of the algorithms.
+                Weights can be traveled to, however they are more costly to travel to. For example,
+                Weight[5] is 5 times more costly to travel to than an empty tile.
+            </div>
+            <img src={WeightTileImg} className='tutorial-img' alt='Weight Tile'/>
+        </div>
+    );
+}
+
+function getEndPointsPage() {
+    return (
+        <div key='end-points'>
+            <h1 className='tutorial-title'>
+                Dragging Start and Goal Nodes
+            </h1>
+            <div className='tutorial-subtext'>
+                The green node (start) is where the pathfinding algorithms start from,
+                while the red node (goal) is where the algorithm is trying to find the shortest path to.
+                You can move the start and goal nodes by clicking them and dragging them.
+            </div>
+            <div className='tutorial-subtext'>
+                You can drag the nodes even after the algorithm has finished being visualized.
+                This allows you to instantly see how paths vary for different start and goal positions.
+            </div>
+            <img
+                src={StartGoalImg}
+                className='tutorial-img-large'
+                alt='Start-Goal'
+                width='28%'
+                height='28%'
+            />
+        </div>
+    );
+}
+
 function getAlgorithmsPage() {
     return (
         <div key='algorithms'>
@@ -81,28 +130,6 @@ function getAlgorithmsPage() {
     );
 }
 
-function getDrawingPage() {
-    return (
-        <div key='draw'>
-            <h1 className='tutorial-title'>
-                Drawing Walls and Weights
-            </h1>
-            <div className='tutorial-subtext'>
-                Click and drag on the empty tiles to draw walls or weights.
-                Click and drag on filled tiles to erase.
-                Click the purple drop down menu to change which wall or weight to draw.
-                Generate terrain by clicking the yellow drop down menu.
-            </div>
-            <div className='tutorial-subtext'>
-                Walls cannot be traveled to, and are therefore not explored by any of the algorithms.
-                Weights can be traveled to, however they are more costly to travel to. For example,
-                Weight[5] is 5 times more costly to travel to than an empty tile.
-            </div>
-            <img src={WeightTileImg} className='tutorial-img' alt='Weight Tile'/>
-        </div>
-    );
-}
-
 function getFinishPage() {
     return (
         <div key='finish'>
@@ -133,6 +160,7 @@ export function getTutorialPages() {
         getIntroductionPage(),
         getExplanationPage(),
         getDrawingPage(),
+        getEndPointsPage(),
         getAlgorithmsPage(),
         getFinishPage()
     ];

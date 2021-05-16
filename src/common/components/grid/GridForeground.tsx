@@ -322,11 +322,11 @@ class GridForeground extends React.Component<IProps,IState>
     }
 
     render() {
-        // console.timeEnd('time');
-        // console.time('time');
         return (
             <div>
-                <div className='endpoint-tiles-table'>
+                <div className='endpoint-tiles-table'
+                    onMouseDown={() => console.log('test')}
+                >
                     {this.renderEndTile(this.state.initial, INITIAL_COLOR,'initial' + this.initialKey)}
                     {this.renderEndTile(this.state.goal, GOAL_COLOR,'goal' + this.goalKey)}
                 </div>
