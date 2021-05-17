@@ -52,8 +52,8 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
 
     constructor(props: IProps) {
         super(props);
-        const w = window.screen.availWidth - (window.outerWidth - window.innerWidth);
-        const h = window.screen.availHeight - (window.outerHeight - window.innerHeight);
+        const w = document.documentElement.clientWidth;
+        const h = document.documentElement.clientHeight;
         this.tileWidth = this.props.tileWidth;
         this.tilesX = Math.floor(w / this.tileWidth) + 1;
         this.tilesY = Math.floor((h - 75 - 30) / this.tileWidth) + 1;
@@ -328,8 +328,9 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
      * Used to calculate the terrain dimensions
      */
     calcEndPointInView() {
-        const xEnd = window.innerWidth / this.tileWidth;
-        const yEnd = (window.innerHeight - 75 - 30) / this.tileWidth;
+        const end = this.calcEndPoint();
+        const xEnd = end.x;
+        const yEnd = end.y;
         const xFloor = Math.floor(xEnd);
         const yFloor = Math.floor(yEnd);
         const xDecimal = xEnd - xFloor;
@@ -348,8 +349,8 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     calcEndPoint() {
-        const xEnd = Math.round(window.innerWidth / this.tileWidth);
-        const yEnd = Math.round((window.innerHeight - 30 - 75) / this.tileWidth);
+        const xEnd = Math.round(document.documentElement.clientWidth / this.tileWidth);
+        const yEnd = Math.round((document.documentElement.clientHeight - 30 - 75) / this.tileWidth);
         return {
             x: xEnd, y: yEnd
         }
