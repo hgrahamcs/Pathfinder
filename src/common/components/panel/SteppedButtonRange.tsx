@@ -13,12 +13,13 @@ interface IState {
     value: number
 }
 
-const HOLD_DELAY = 100;
+const HOLD_DELAY = 120;
 
 class SteppedButtonRange extends React.Component<IProps, IState>
 {
     private interval: NodeJS.Timeout | undefined;
     private callback: (() => void) | undefined;
+    private wasClicked: boolean = false;
 
     private intervals: number = 0;
 
@@ -39,6 +40,7 @@ class SteppedButtonRange extends React.Component<IProps, IState>
 
     onMinus(e: Event) {
         e.preventDefault();
+        this.wasClicked = true;
         this.callback = () => {
             this.intervals++;
             this.minus();
@@ -56,6 +58,7 @@ class SteppedButtonRange extends React.Component<IProps, IState>
 
     onPlus(e: Event) {
         e.preventDefault();
+        this.wasClicked = true;
         this.callback = () => {
             this.intervals++;
             this.plus();
@@ -64,11 +67,12 @@ class SteppedButtonRange extends React.Component<IProps, IState>
     }
 
     cancel() {
-        if(this.intervals === 0) {
+        if(this.intervals === 0 && this.wasClicked) {
             (this.callback as () => void)();
         }
         clearInterval(this.interval as NodeJS.Timeout);
         this.intervals = 0;
+        this.wasClicked = false;
     }
 
     render() {
