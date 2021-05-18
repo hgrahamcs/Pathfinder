@@ -84,7 +84,7 @@ class SteppedButtonRange extends React.Component<IProps, IState>
                     onMouseUp={() => this.cancel()}
                     onMouseLeave={() => this.cancel()}
                     onKeyDown={(e) => {
-                        if(e.key == 'Enter') {
+                        if(e.key === 'Enter') {
                             this.minus();
                         }
                     }}
@@ -102,7 +102,7 @@ class SteppedButtonRange extends React.Component<IProps, IState>
                     onMouseUp={() => this.cancel()}
                     onMouseLeave={() => this.cancel()}
                     onKeyDown={(e) => {
-                        if(e.key == 'Enter') {
+                        if(e.key === 'Enter') {
                             this.plus()
                         }
                     }}
