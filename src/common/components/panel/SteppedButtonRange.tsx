@@ -31,11 +31,10 @@ class SteppedButtonRange extends React.Component<IProps, IState>
     }
 
     minus() {
-        const val = this.state.value;
-        this.setState({
-            value: val - this.props.step >= this.props.min ?
-                val - this.props.step : val
-        }, () => this.props.onChange(val));
+        this.setState(prevState => ({
+            value: prevState.value - this.props.step >= this.props.min ?
+                prevState.value - this.props.step : prevState.value
+        }), () => this.props.onChange(this.state.value));
     }
 
     onMinus(e: Event) {
@@ -49,11 +48,10 @@ class SteppedButtonRange extends React.Component<IProps, IState>
     }
 
     plus() {
-        const val = this.state.value;
-        this.setState({
-            value: val + this.props.step <= this.props.max ?
-                val + this.props.step : val
-        }, () => this.props.onChange(val));
+        this.setState(prevState => ({
+            value: prevState.value + this.props.step <= this.props.max ?
+                prevState.value + this.props.step : prevState.value
+        }), () => this.props.onChange(this.state.value));
     }
 
     onPlus(e: Event) {
