@@ -36,9 +36,11 @@
 
 .button {
     font-weight: 600;
-    vertical-align: top;
     height: 48px;
     border: 0;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
     padding: 10px;
     background: transparent;
     color: white;
@@ -205,7 +207,22 @@
 }
 
 .drop-down-button-down {
-    background-color: rgb(72,168,85);
+    animation-name: fadeDown;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes fadeDown {
+    0% {
+        background-color: transparent;
+    }
+    100% {
+        background-color: rgb(72,168,85);
+    }
 }
 
 .drop-down-content {
@@ -296,7 +313,7 @@
 }
 
 .arrowUp {
-    border: solid;
+    border-style: solid;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
@@ -307,7 +324,7 @@
 }
 
 .arrowDown {
-    border: solid;
+    border-style: solid;
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
