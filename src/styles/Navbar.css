@@ -41,7 +41,7 @@
     text-align: center;
     display: table-cell;
     vertical-align: middle;
-    padding: 10px;
+    padding: 0;
     background: transparent;
     color: white;
     box-shadow: none;
@@ -52,7 +52,6 @@
 .special-button {
     font-weight: 600;
     vertical-align: top;
-    height: 48px;
     border: 0;
     padding: 10px;
     background: transparent;
@@ -60,14 +59,15 @@
     box-shadow: none;
     border-radius: 0;
     margin: 0 10px 0 10px;
+    height: 75px;
 }
 
 .special-button:hover {
-    color: rgb(112,208,125);
+    background-color: rgb(112,208,125);
 }
 
 .special-button:active {
-    color: rgb(72,168,85);
+    background-color: rgb(72,168,85);
 }
 
 .button:focus {
@@ -203,26 +203,20 @@
 }
 
 .drop-down-button-up:hover {
-    color: rgb(112,208,125);
+    background-color: rgb(112,208,125);
 }
 
-.drop-down-button-down {
-    animation-name: fadeDown;
-    animation-duration: 0.3s;
-    animation-timing-function: ease-out;
-    animation-direction: normal;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-}
-
-@keyframes fadeDown {
+@keyframes fadeDownLight {
     0% {
         background-color: transparent;
     }
     100% {
-        background-color: rgb(72,168,85);
+        background-color: rgb(112,208,125);
     }
+}
+
+.drop-down-button-down {
+    background-color: rgb(112,208,125);
 }
 
 .drop-down-content {
@@ -340,7 +334,7 @@
 }
 
 .green-button:hover{
-    background-color: rgb(97,193,110);
+    background-color: rgb(117,213,130);
 }
 
 .green-button:active {

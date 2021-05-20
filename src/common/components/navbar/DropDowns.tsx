@@ -10,8 +10,7 @@ export interface DropDownProps {
 export interface DropDownState {
     up: boolean,
     display: string,
-    fade: string,
-    hovering: boolean
+    fade: string
 }
 
 interface DropDownTextState {
@@ -71,8 +70,7 @@ class DropDown extends React.Component<DropDownProps, DropDownState>
         this.state = {
             up: true,
             display: 'none',
-            fade: 'fade-in',
-            hovering: false
+            fade: 'fade-in'
         };
     }
 
@@ -131,7 +129,7 @@ class DropDown extends React.Component<DropDownProps, DropDownState>
     }
 
     getHighlightClass() {
-        return !this.state.up ? 'drop-down-button-down' : 'drop-down-button-up'
+        return !this.state.up ? 'drop-down-button-down drop-down-button-up' : 'drop-down-button-up'
     }
 
     render() {
@@ -147,18 +145,11 @@ class DropDown extends React.Component<DropDownProps, DropDownState>
             >
                 <div
                     className={'drop-down-button ' + this.getHighlightClass()}
-                    onMouseOver={() => this.setState({ hovering: true })}
-                    onMouseLeave={() => this.setState({ hovering: false })}
                 >
                     <div className='drop-down-button-wrapper'>
                         <span className='drop-down-text'>{this.props.text}</span>
                         <span
                             className={this.arrowClass()}
-                            style={{
-                                borderColor: this.state.hovering && this.state.up ?
-                                    HOVER_ARROW_COLOR :
-                                    'white'
-                            }}
                         />
                     </div>
                 </div>
