@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Pathfinder/static/css/main.2965df7a.chunk.css",
-    "main.js": "/Pathfinder/static/js/main.289eaa5e.chunk.js",
-    "main.js.map": "/Pathfinder/static/js/main.289eaa5e.chunk.js.map",
+    "main.js": "/Pathfinder/static/js/main.7b6cb50b.chunk.js",
+    "main.js.map": "/Pathfinder/static/js/main.7b6cb50b.chunk.js.map",
     "runtime-main.js": "/Pathfinder/static/js/runtime-main.229786fb.js",
     "runtime-main.js.map": "/Pathfinder/static/js/runtime-main.229786fb.js.map",
     "static/js/2.3105fd4e.chunk.js": "/Pathfinder/static/js/2.3105fd4e.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.229786fb.js",
     "static/js/2.3105fd4e.chunk.js",
     "static/css/main.2965df7a.chunk.css",
-    "static/js/main.289eaa5e.chunk.js"
+    "static/js/main.7b6cb50b.chunk.js"
   ]
 }
