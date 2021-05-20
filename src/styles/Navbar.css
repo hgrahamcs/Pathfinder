@@ -11,7 +11,7 @@
 }
 
 .title:hover{
-    color: rgb(83,186,156);
+    color: rgb(112,208,125);
     cursor: pointer;
 }
 
@@ -44,7 +44,7 @@
     color: white;
     box-shadow: none;
     border-radius: 6px;
-    margin: 0 15px 0 15px;
+    margin: 0 20px 0 20px;
 }
 
 .special-button {
@@ -61,11 +61,11 @@
 }
 
 .special-button:hover {
-    color: rgb(83,186,156);
+    color: rgb(112,208,125);
 }
 
 .special-button:active {
-    color: rgb(33,136,106);
+    color: rgb(72,168,85);
 }
 
 .button:focus {
@@ -201,11 +201,11 @@
 }
 
 .drop-down-button-up:hover {
-    color: rgb(83,186,156);
+    color: rgb(112,208,125);
 }
 
 .drop-down-button-down {
-    background-color: rgb(83,186,156);
+    background-color: rgb(72,168,85);
 }
 
 .drop-down-content {
@@ -240,7 +240,7 @@
 }
 
 .drop-down-content div {
-    color: #E1E4E7;
+    color: #E4E6E7;
     padding: 2px 20px 2px;
     text-decoration: none;
     display: block;
@@ -248,7 +248,7 @@
 }
 
 .drop-down-content div:hover {
-    background-color: rgb(83,186,156);
+    background-color: rgb(87,183,100);
     cursor: pointer;
 }
 
@@ -318,16 +318,16 @@
 }
 
 .green-button {
-    background-color: rgb(83,186,156);
+    background-color: rgb(87,183,100);
     color: white;
 }
 
 .green-button:hover{
-    background-color: rgb(83,186,156);
+    background-color: rgb(97,193,110);
 }
 
 .green-button:active {
-    background-color: rgb(83,186,156);
+    background-color: rgb(77,173,90);
 }
 
 .settings-button {

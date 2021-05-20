@@ -6,7 +6,7 @@ import {
     ClearDropDown,
     MazeDropDown,
     TilesDropDown
-} from './navbar/DropDownComponents';
+} from './navbar/DropDowns';
 import {
     AlgorithmSettings,
     HeuristicSettings, 
