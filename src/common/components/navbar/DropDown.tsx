@@ -66,6 +66,35 @@ abstract class DropDown<IProps extends DropDownProps, IState extends DropDownSta
             display: this.state.display
         }
     }
+
+    arrowClass() {
+        return this.state.up ? 'arrowUp' : 'arrowDown';
+    }
+
+    getHighlightClass() {
+        return !this.state.up ? 'drop-down-button-down' : 'drop-down-button-up'
+    }
+
+    renderDropDown(text: string, content: JSX.Element, dropDownClass?: string) {
+        const className = dropDownClass === undefined ? '' : dropDownClass;
+        return (
+            <div
+                tabIndex={0}
+                className={'drop-down ' + className}
+                onMouseDown={e => e.preventDefault()}
+                onKeyPress={(e) => this.toggle(e.nativeEvent)}
+                onClick={(e) => this.toggle(e.nativeEvent)}
+            >
+                <div className={'drop-down-button ' + this.getHighlightClass()}>
+                    <div className='drop-down-button-wrapper'>
+                        <span className='drop-down-text'>{text}</span>
+                        <span className={this.arrowClass()}/>
+                    </div>
+                </div>
+                {content}
+            </div>
+        );
+    }
 }
 
 export default DropDown;

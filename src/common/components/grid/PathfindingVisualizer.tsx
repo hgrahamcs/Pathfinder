@@ -102,6 +102,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     componentWillUnmount() {
+        window.removeEventListener('resize', this.onWindowResize);
         window.removeEventListener('blur', this.onWindowBlur);
         window.removeEventListener('focus', this.onWindowFocus);
     }

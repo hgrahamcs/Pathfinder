@@ -64,23 +64,10 @@ export class AlgorithmDropDown extends DropDown<AlgProps, DropDownTextState>
         });
     }
 
-    arrowClass() {
-        return this.state.up ? 'arrowUp' : 'arrowDown';
-    }
-
     render() {
         return (
-            <div
-                tabIndex={0}
-                className='alg-drop-down drop-down'
-                onMouseDown={e => e.preventDefault()}
-                onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                onClick={(e) => this.toggle(e.nativeEvent)}
-            >
-                <div className='alg-drop-down-button drop-down-button'>
-                    <span className='alg-drop-down-text drop-down-text'>{this.state.text}</span>
-                    <span className={'alg-arr ' + this.arrowClass()}/>
-                </div>
+            this.renderDropDown(
+                this.state.text,
                 <div
                     style={this.contentStyle()}
                     className={this.state.fade + ' alg-drop-down-content drop-down-content'}
@@ -91,7 +78,7 @@ export class AlgorithmDropDown extends DropDown<AlgProps, DropDownTextState>
                     <Clickable click={() => this.onChange('bfs', 'Breadth First')}>Breadth First Search</Clickable>
                     <Clickable click={() => this.onChange('dfs', 'Depth First')}>Depth First Search</Clickable>
                 </div>
-            </div>
+            )
         );
     }
 }
@@ -107,23 +94,10 @@ export class ClearDropDown extends DropDown<ClrProps, DropDownState>
         };
     }
 
-    arrowClass() {
-        return this.state.up ? 'arrowUpW' : 'arrowDownW';
-    }
-
     render() {
         return (
-            <div
-                tabIndex={0}
-                className='clr-drop-down drop-down'
-                onMouseDown={e => e.preventDefault()}
-                onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                onClick={(e) => this.toggle(e.nativeEvent)}
-            >
-                <div className='clr-drop-down-button drop-down-button'>
-                    <span className='clr-drop-down-text drop-down-text'>Reset</span>
-                    <span className={'clr-arr ' + this.arrowClass()}/>
-                </div>
+            this.renderDropDown(
+                'Reset',
                 <div
                     style={this.contentStyle()}
                     className={this.state.fade + ' clr-drop-down-content drop-down-content'}
@@ -132,7 +106,7 @@ export class ClearDropDown extends DropDown<ClrProps, DropDownState>
                     <Clickable click={this.props.onClickTiles}>Clear Tiles</Clickable>
                     <Clickable click={this.props.onClickReset}>Reset Grid</Clickable>
                 </div>
-            </div>
+            )
         );
     }
 }
@@ -148,22 +122,10 @@ export class MazeDropDown extends DropDown<MazeProps, DropDownState>
         };
     }
 
-    arrowClass() {
-        return this.state.up ? 'arrowUpW' : 'arrowDownW';
-    }
-
     render() {
         return (
-            <div
-                tabIndex={0} className='maze-drop-down drop-down'
-                onMouseDown={e => e.preventDefault()}
-                onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                onClick={(e) => this.toggle(e.nativeEvent)}
-            >
-                <div className='maze-drop-down-button drop-down-button'>
-                    <span className='maze-drop-down-text drop-down-text'>Terrain</span>
-                    <span className={'clr-arr ' + this.arrowClass()}/>
-                </div>
+            this.renderDropDown(
+                'Terrain',
                 <div
                     style={this.contentStyle()}
                     className={this.state.fade + ' maze-drop-down-content drop-down-content'}
@@ -172,8 +134,9 @@ export class MazeDropDown extends DropDown<MazeProps, DropDownState>
                     <Clickable click={this.props.onClickMazeHorizontal}>Horizontal Skewed Maze</Clickable>
                     <Clickable click={this.props.onClickMazeVertical}>Vertical Skewed Maze</Clickable>
                     <Clickable click={this.props.onClickRandomTerrain}>Random Terrain</Clickable>
-                </div>
-            </div>
+                </div>,
+                'maze-drop-down'
+            )
         );
     }
 }
@@ -190,10 +153,6 @@ export class TilesDropDown extends DropDown<TileProps, DropDownTextState>
         };
     }
 
-    arrowClass() {
-        return this.state.up ? 'arrowUpW' : 'arrowDownW';
-    }
-
     onChange(cost: number, text: string) {
         this.props.onClickTileType(cost);
         this.setState({
@@ -203,17 +162,8 @@ export class TilesDropDown extends DropDown<TileProps, DropDownTextState>
 
     render() {
         return (
-            <div
-                tabIndex={0}
-                className='tiles-drop-down drop-down'
-                onMouseDown={e => e.preventDefault()}
-                onKeyPress={(e) => this.toggle(e.nativeEvent)}
-                onClick={(e) => this.toggle(e.nativeEvent)}
-            >
-                <div className='tiles-drop-down-button drop-down-button'>
-                    <span className='tiles-drop-down-text drop-down-text'>{this.state.text}</span>
-                    <span className={'clr-arr ' + this.arrowClass()}/>
-                </div>
+            this.renderDropDown(
+                this.state.text,
                 <div
                     style={this.contentStyle()}
                     className={this.state.fade + ' tiles-drop-down-content drop-down-content'}
@@ -222,8 +172,9 @@ export class TilesDropDown extends DropDown<TileProps, DropDownTextState>
                     <Clickable click={() => this.onChange(2, 'Weight [2]')}>Weight [2]</Clickable>
                     <Clickable click={() => this.onChange(3, 'Weight [3]')}>Weight [3]</Clickable>
                     <Clickable click={() => this.onChange(5, 'Weight [5]')}>Weight [5]</Clickable>
-                </div>
-            </div>
+                </div>,
+                'tiles-drop-down'
+            )
         );
     }
 }
