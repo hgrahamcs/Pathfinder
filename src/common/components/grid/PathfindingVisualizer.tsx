@@ -108,7 +108,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     }
 
     /**
-     * Prevents pathfinding visualizer from being updated unless the algorithm stats
+     * Prevents pathfinding grid from being updated unless the algorithm stats
      * have changed (meaning an algorithm was visualized)
      * Doesn't prevent Foreground and background from being updated automatically
      * when their state changes
@@ -170,7 +170,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     /**
      * Performs the pathfinding algorithm on the grid and visualizes it with delays between successive
      * node generations
-     * If the visualizer is currently visualizing, the visualization stops instead
+     * If the grid is currently visualizing, the visualization stops instead
      */
     doDelayedPathfinding() {
         const settings = this.props.settings;
@@ -410,6 +410,13 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
         this.background.current!.visualizeGenerationAndArrows(generation);
     }
 
+    /**
+     * Renders the sub components of the visualizer needed to show
+     *  the algorithm stats,
+     *  the grid itself,
+     *  the visualization of the algorithm,
+     *  and the maze the pathfinder solves
+     */
     render() {
         return (
             <div>

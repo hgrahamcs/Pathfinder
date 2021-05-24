@@ -24,8 +24,8 @@ import {
 } from '../pathfinding/algorithms/TerrainGeneratorBuilder';
 import Icon from '../../images/react.png';
 import AppSettings, {getDefaultSettings} from "../utils/AppSettings";
-import Tutorial, {KEY_SHOW} from './Tutorial';
-import {getTutorialPages} from './TutorialPages';
+import Tutorial, {KEY_SHOW} from './tutorial/Tutorial';
+import {getTutorialPages} from './tutorial/TutorialPages';
 
 interface IProps {}
 
@@ -47,7 +47,7 @@ interface IState {
 
 class PathfindingApp extends React.Component<IProps, IState>
 {
-    //expose visualizer to parent to connect to button siblings
+    //expose grid to parent to connect to button siblings
     private visualizer: RefObject<PathfindingVisualizer> = React.createRef();
 
     //drop down refs needed to invoke behavior between dropdowns
@@ -131,7 +131,7 @@ class PathfindingApp extends React.Component<IProps, IState>
      * Settings, overall appearance, etc
      */
 
-    changeVButtonColor(visualizing: boolean) {
+    changeButtonActiveState(visualizing: boolean) {
         this.setState({
             visualizing: visualizing
         })
@@ -388,7 +388,7 @@ class PathfindingApp extends React.Component<IProps, IState>
                 </TopBar>
                 <PathfindingVisualizer
                     ref={this.visualizer}
-                    onChangeVisualizing={(viz: boolean) => this.changeVButtonColor(viz)}
+                    onChangeVisualizing={(viz: boolean) => this.changeButtonActiveState(viz)}
                     settings={this.state.settings}
                     tileWidth={this.tileWidth}
                 />
