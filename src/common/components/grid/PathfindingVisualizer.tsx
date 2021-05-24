@@ -1,13 +1,13 @@
 import React, {RefObject} from 'react';
 import GridVisualization from './GridVisualization';
 import GridForeground from './GridForeground';
-import StatsPanel from './StatsPanel';
+import Stats from './Stats';
 import GridBackground from './GridBackground';
 import {Node} from '../../pathfinding/algorithms/Node';
-import PathfinderBuilder from '../../pathfinding/algorithms/PathfinderBuilder';
+import PathfinderBuilder from '../../pathfinding/builders/PathfinderBuilder';
 import Pathfinder from '../../pathfinding/algorithms/Pathfinder';
 import {euclidean} from '../../pathfinding/algorithms/Heuristics';
-import TerrainGeneratorBuilder, {RANDOM_TERRAIN} from '../../pathfinding/algorithms/TerrainGeneratorBuilder';
+import TerrainGeneratorBuilder, {RANDOM_TERRAIN} from '../../pathfinding/builders/TerrainGeneratorBuilder';
 import {createTileData, Point, Tile, TileData} from '../../pathfinding/core/Components';
 import {HashSet, stringify} from '../../pathfinding/structures/Hash';
 import AppSettings from '../../utils/AppSettings';
@@ -420,7 +420,7 @@ class PathfindingVisualizer extends React.Component<IProps,IState>
     render() {
         return (
             <div>
-                <StatsPanel
+                <Stats
                     algorithm={this.state.algorithm}
                     length={this.state.length}
                     cost={this.state.cost}

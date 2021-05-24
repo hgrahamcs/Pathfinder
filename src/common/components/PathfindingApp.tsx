@@ -15,13 +15,13 @@ import {
 } from './panel/SettingPanels';
 import DraggablePanel from './panel/DraggablePanel';
 import PathfindingVisualizer from './grid/PathfindingVisualizer';
-import PathfinderBuilder from '../pathfinding/algorithms/PathfinderBuilder';
+import PathfinderBuilder from '../pathfinding/builders/PathfinderBuilder';
 import {
     MAZE,
     MAZE_HORIZONTAL_SKEW,
     MAZE_VERTICAL_SKEW,
     RANDOM_TERRAIN
-} from '../pathfinding/algorithms/TerrainGeneratorBuilder';
+} from '../pathfinding/builders/TerrainGeneratorBuilder';
 import Icon from '../../images/react.png';
 import AppSettings, {getDefaultSettings} from "../utils/AppSettings";
 import Tutorial, {KEY_SHOW} from './tutorial/Tutorial';
