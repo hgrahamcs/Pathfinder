@@ -1,6 +1,5 @@
 import Navigator from '../core/Navigator';
 import PlusNavigator from '../core/PlusNavigator';
-import {Point} from '../core/Components';
 import {Grid} from '../core/Grid';
 import {
     chebyshev,

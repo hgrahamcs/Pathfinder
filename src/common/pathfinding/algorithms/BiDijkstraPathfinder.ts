@@ -1,5 +1,5 @@
 import Pathfinder, {reconstructPath, reconstructPathReversed} from './Pathfinder';
-import {DijkstraNode, Node} from './Node';
+import {DijkstraNode} from './Node';
 import {Point} from '../core/Components';
 import {HashTable, stringify} from '../structures/Hash';
 import Heap from '../structures/Heap';
