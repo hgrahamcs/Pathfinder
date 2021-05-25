@@ -116,7 +116,7 @@ export class EndpointsPage extends React.Component
                 >
                     <img
                         src={StartGoalImg}
-                        className='tutorial-img-large'
+                        className='tutorial-img'
                         alt='Start-Goal'
                         width='28%'
                         height='28%'
