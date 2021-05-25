@@ -1,7 +1,7 @@
 import React from 'react'
-import Icon from '../../../images/react.png';
-import WeightTileImg from '../../../images/weight-tile.png';
-import StartGoalImg from '../../../images/start-goal.png';
+import Icon from '../../../assets/react.png';
+import WeightTileImg from '../../../assets/weight-tile.png';
+import StartGoalImg from '../../../assets/start-goal.png';
 
 export class IntroductionPage extends React.Component
 {

@@ -22,7 +22,7 @@ import {
     MAZE_VERTICAL_SKEW,
     RANDOM_TERRAIN
 } from '../pathfinding/builders/TerrainGeneratorBuilder';
-import Icon from '../../images/react.png';
+import Icon from '../../assets/react.png';
 import AppSettings, {getDefaultSettings} from "../utils/AppSettings";
 import Tutorial, {KEY_SHOW} from './tutorial/Tutorial';
 import {getTutorialPages} from './tutorial/TutorialPages';
