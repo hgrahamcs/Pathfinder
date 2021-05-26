@@ -33,7 +33,7 @@ The grid is based around 3 fundamental interfaces contained in ../pathfinding/co
 
 Point, which represents an x,y location on the grid.
 TileData, which stores the solidity of a tile and the cost to travel to a tile if it isn't solid.
-Tile, which stores Point and TileData, representing a Node on the Grid.
+Tile, which stores Point and TileData, representing a Vertex on the Grid.
 
 We can create a grid with a width of 10 and a height of 5 like so:
 ```
