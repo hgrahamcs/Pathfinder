@@ -1,6 +1,6 @@
 # Pathfinder
 
-Educational grid based pathfinding tool and library.
+Educational grid based pathfinding tool and library powered by react.
 
 ## Introduction
 
@@ -9,8 +9,6 @@ This project is an educational Grid based Pathfinding tool written in Typescript
 This is is the react version of an older project I made: [here](https://github.com/JosephPrichard/PathfindingVisualizer)
 
 ## Build Process
-
-This project uses Webpack and Npm to compile the Typescript src files into the bundle.js file located in the root directory of the repository. 
 
 You can open the development server with
 ```
